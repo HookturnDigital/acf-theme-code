@@ -70,8 +70,10 @@ class ACFTC_Core {
 		 * Hence the following logic order is used:
 		 */
 
-		if ( is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) ) {
-			self::$db_table = 'posts';
+		if ( is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) || // ACF Pro
+			 is_plugin_active( 'advanced-custom-fields-pro-beta/acf.php') || // ACF Pro Beta
+			 is_plugin_active( 'acf-pro-master/acf.php' ) ) { // ACF Pro Beta alt
+ 			self::$db_table = 'posts';
 		} elseif  ( is_plugin_active('advanced-custom-fields/acf.php' ) ) {
 			self::$db_table = 'postmeta';
 		}
