@@ -39,7 +39,7 @@ if ( is_admin() ) {
 	{
 		static $instance;
 		if ( !$instance )
-			$instance = new ACFTC_Core( plugin_dir_path( __FILE__ ), plugin_dir_url( __FILE__ ) );
+			$instance = new ACFTC_Core( plugin_dir_path( __FILE__ ), plugin_dir_url( __FILE__ ), plugin_basename( __FILE__ ) );
 		return $instance;
 	}
 

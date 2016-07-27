@@ -6,6 +6,8 @@ class ACFTC_Core {
 
 	public static $plugin_path = '';
 	public static $plugin_url = '';
+	public static $plugin_basename = '';
+
 	public static $db_table = '';
 	public static $indent_repeater = 2;
 	public static $indent_flexible_content = 3;
@@ -33,18 +35,45 @@ class ACFTC_Core {
 	/**
 	 * ACFTC_Core constructor
 	 */
-	public function __construct( $plugin_path, $plugin_url ) {
+	public function __construct( $plugin_path, $plugin_url, $plugin_basename ) {
 
 		// Paths and URLs
 		self::$plugin_path = $plugin_path;
 		self::$plugin_url = $plugin_url;
+		self::$plugin_basename = $plugin_basename;
 
 		// Hooks
+		add_action( 'admin_init', array($this, 'acf_theme_code_pro_check') );
 		add_action( 'admin_init', array($this, 'set_db_table') );
 		add_action( 'add_meta_boxes', array($this, 'register_meta_boxes') );
 		add_action( 'admin_enqueue_scripts', array($this, 'enqueue') );
 
 	}
+
+	/**
+	 * Check if ACF Theme Code Pro is activated
+	 */
+	public function acf_theme_code_pro_check() {
+
+		// If Theme Code Pro is activated, disable Theme Code (free) and display notice
+		if ( is_plugin_active( 'acf-theme-code-pro/acf_theme_code_pro.php' ) ) {
+			deactivate_plugins( self::$plugin_basename );
+			add_action( 'admin_notices', array( $this, 'disabled_notice' ) );
+			if ( isset( $_GET['activate'] ) ) {
+				unset( $_GET['activate'] );
+			}
+		}
+
+	}
+
+	/**
+	 * ACF Theme Code (free) disabled notice
+	 */
+	public function disabled_notice() {
+		echo '<div class="notice notice-success is-dismissible">';
+    		echo '<p>Plugin <strong>Advanced Custom Fields: Theme Code Pro</strong> is activated so plugin <strong>Advanced Custom Fields: Theme Code</strong> has been disabled.</p>';
+		echo '</div>';
+    }
 
 
 	/**
