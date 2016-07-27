@@ -1,0 +1,106 @@
+/* Custom styles for the ACF Template Code plugin */
+
+/* clear default padding off .inside  */
+#acftc-meta-box .inside {
+	margin:0;
+	padding:0;
+}
+
+/* warpper for the intro / meta bar */
+.acftc-field-meta {
+	position: relative;
+	width: 100%;
+	height: 22px;
+	margin-top: 15px;
+}
+
+.acftc-field-code {
+	position: relative;
+
+}
+
+/* acftc-field-meta__title - place title */
+[data-pseudo-content]::before {
+	content: attr(data-pseudo-content);
+	display: block;
+	color:#999;
+	font-weight: bold;
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+	user-select: none;
+	position: absolute;
+	top:0;
+	left:20px;
+}
+
+.acftc-field-code .acftc-field__copy {
+	position: absolute;
+	top:-22px;
+	right:11px;
+	width: 12px;
+	height: 20px;
+	background: url(icon--clipboard.svg) center center no-repeat;
+	background-size: 12px auto;
+	display: block;
+	opacity: 0.3;
+	transition: all 300ms ease-in;
+	z-index: 1000;
+}
+
+.acftc-field-code .acftc-field__copy:hover  {
+	opacity: 1;
+}
+
+
+@-webkit-keyframes zoomitbig {
+	15%,40%,75%,100% {
+		-webkit-transform-origin: center center
+	}
+
+	15% {
+		-webkit-transform: scale(1.4, 1.2)
+	}
+
+	40% {
+		-webkit-transform: scale(0.9, 0.9)
+	}
+
+	75% {
+		-webkit-transform: scale(1.08, 1)
+	}
+
+	100% {
+		-webkit-transform: scale(1, 1)
+	}
+}
+
+@-moz-keyframes zoomitbig {
+	15%,40%,75%,100% {
+		-moz-transform-origin: center center
+	}
+
+	15% {
+		-moz-transform: scale(1.4, 1.2)
+	}
+
+	40% {
+		-moz-transform: scale(0.9, 0.9)
+	}
+
+	75% {
+		-moz-transform: scale(1.08, 1)
+	}
+
+	100% {
+		-moz-transform: scale(1, 1)
+	}
+}
+
+.acftc-field-code .acftc-field__copy:focus {
+	outline: 0;
+	border:none;
+	box-shadow: none !important;
+	-webkit-animation: zoomitbig 300ms ease-out;
+   -moz-animation: zoomitbig 300ms ease-out
+}
