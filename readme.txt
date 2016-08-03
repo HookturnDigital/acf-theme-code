@@ -2,7 +2,7 @@
 Contributors: aaronrutley, ben-pearson
 Tags: acf,advanced custom fields,php,automation
 Requires at least: 4.5.3
-Tested up to: 4.5.3
+Tested up to: 4.6
 Stable tag: 1.0.0
 License: GPL2+
 
@@ -30,7 +30,11 @@ No more constantly referring to the ACF documentation to see how to implement a 
 = Features include: =
 * Easily copy / paste the field code into your theme
 * Great for offline documentation
-* Code generated is based on examples the from official ACF documentation
+* Code generated is based on examples from the official ACF documentation
+
+> <strong>Upgrade to ACF Theme Code Pro </strong><br>
+> Generate code for all ACF Pro & a range of 3rd party ACF fields
+> [Find out more about ACT Theme Code Pro](https://hookturn.io/downloads/acf-theme-code-pro/)
 
 = Support for the following fields: =
 * Text
@@ -64,6 +68,16 @@ No more constantly referring to the ACF documentation to see how to implement a 
 2. Activate the Plugin via the plugins menu
 3. Create or Update an ACF Field Group
 4. Scroll down to see the ACF Theme code
+
+== Frequently Asked Questions ==
+
+= Does this plugin support ACF Pro ?  =
+
+No, however [ACF Theme Code Pro](https://hookturn.io/downloads/acf-theme-code-pro/) supports all the fields in ACF Pro and a range of other 3rd Party Fields.
+
+= Are you open to suggestions in the code that is output ? =
+
+Yes, we'd appreciate community feedback and plan to improve the generated code over time.
 
 == Screenshots ==
 1. When you publish, edit or update an ACF Field Group, the code required to implement each field is displayed for you in the Template Code section below. Use the clipboard icon to easily copy these code blocks and paste them into your theme.
