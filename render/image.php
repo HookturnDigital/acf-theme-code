@@ -1,8 +1,8 @@
 <?php
 // Image field
 
-// Exit if accessed directly 
-if ( ! defined( 'ABSPATH' ) ) exit; 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 if ( "postmeta" == ACFTC_Core::$db_table ) { // ACF
@@ -13,9 +13,9 @@ if ( "postmeta" == ACFTC_Core::$db_table ) { // ACF
 
 // If image is returned as an array (postmeta / v5) or an object (posts / v4)
 if ( $return_format == 'array' || $return_format == 'object'  ) {
-	echo $this->indent . htmlspecialchars("<?php \$image = " . $this->get_field_method . "( '".$this->name."' ); ?>")."\n";
-	echo $this->indent . htmlspecialchars("<?php if ( \$image ) { ?>")."\n";
-	echo $this->indent . htmlspecialchars("	<img src=\"<?php echo \$image['url']; ?>\" alt=\"<?php echo \$image['alt']; ?>\" />")."\n";
+	echo $this->indent . htmlspecialchars("<?php \$".$this->name." = " . $this->get_field_method . "( '".$this->name."' ); ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php if ( \$".$this->name." ) { ?>")."\n";
+	echo $this->indent . htmlspecialchars("	<img src=\"<?php echo \$".$this->name."['url']; ?>\" alt=\"<?php echo \$".$this->name."['alt']; ?>\" />")."\n";
 	echo $this->indent . htmlspecialchars("<?php } ?>\n");
 }
 
@@ -28,8 +28,8 @@ if ( $return_format == 'url' ) {
 
 // If image is returned as an ID
 if ( $return_format == 'id' ) {
-	echo $this->indent . htmlspecialchars("<?php \$image = " . $this->get_field_method . "( '".$this->name."' ); ?>")."\n";
-	echo $this->indent . htmlspecialchars("<?php if ( \$image ) { ?>")."\n";
-	echo $this->indent . htmlspecialchars("	<?php echo wp_get_attachment_image( \$image, 'full' ); ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php \$".$this->name." = " . $this->get_field_method . "( '".$this->name."' ); ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php if ( \$".$this->name." ) { ?>")."\n";
+	echo $this->indent . htmlspecialchars("	<?php echo wp_get_attachment_image( \$".$this->name.", 'full' ); ?>")."\n";
 	echo $this->indent . htmlspecialchars("<?php } ?>\n");
 }

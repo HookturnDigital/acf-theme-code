@@ -3,7 +3,7 @@
 Plugin Name: Advanced Custom Fields: Theme Code
 Plugin URI: http://www.acfthemecode.com/
 Description: Generates theme code for ACF field groups to speed up development.
-Version: 1.0.0
+Version: 1.1.0
 Author: Aaron Rutley, Ben Pearson
 Author URI: http://www.acfthemecode.com/
 License: GPLv2 or later

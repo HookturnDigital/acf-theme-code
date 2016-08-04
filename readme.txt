@@ -73,7 +73,8 @@ No more constantly referring to the ACF documentation to see how to implement a 
 
 = Does this plugin support ACF Pro ?  =
 
-No, however [ACF Theme Code Pro](https://hookturn.io/downloads/acf-theme-code-pro/) supports all the fields in ACF Pro and a range of other 3rd Party Fields.
+This plugin has basic support for ACF Pro.
+Our premium version - [ACF Theme Code Pro](https://hookturn.io/downloads/acf-theme-code-pro/) supports all the fields in ACF Pro and a range of other 3rd Party Fields.
 
 = Are you open to suggestions in the code that is output ? =
 
@@ -83,6 +84,9 @@ Yes, we'd appreciate community feedback and plan to improve the generated code o
 1. When you publish, edit or update an ACF Field Group, the code required to implement each field is displayed for you in the Template Code section below. Use the clipboard icon to easily copy these code blocks and paste them into your theme.
 
 == Changelog ==
+
+= 1.1.0 =
+* Various field formatting improvements inline with ACF Theme Code Pro
 
 = 1.0.0 =
 * First version
