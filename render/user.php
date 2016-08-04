@@ -1,8 +1,8 @@
 <?php
 // User field
 
-// Exit if accessed directly 
-if ( ! defined( 'ABSPATH' ) ) exit; 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-echo $this->indent . htmlspecialchars("<?php \$user_array = " . $this->get_field_method . "('".$this->name."'); "."\n");
-echo $this->indent . htmlspecialchars("// var_dump(\$user_array); ?>")."\n";
+echo $this->indent . htmlspecialchars("<?php \$".$this->name."_array = " . $this->get_field_method . "( '".$this->name."' ); ?> "."\n");
+echo $this->indent . htmlspecialchars("<?php // var_dump( \$".$this->name."_array ); ?>")."\n";
