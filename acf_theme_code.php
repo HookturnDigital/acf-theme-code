@@ -10,10 +10,10 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-// Exit if accessed directly 
-if ( ! defined( 'ABSPATH' ) ) exit; 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-// Check for dashboard or admin panel 
+// Check for dashboard or admin panel
 if ( is_admin() ) {
 
 	/**
@@ -22,13 +22,6 @@ if ( is_admin() ) {
 	include('core/core.php');
 	include('core/group.php');
 	include('core/field.php');
-
-	/**
-	 * Extended functionality classes
-	 */
-	if ( file_exists( plugin_dir_path( __FILE__ ) . 'extend' ) ) {
-		include('extend/core/flexible-content-layout.php');
-	}
 
 	/**
 	 * Single function for accessing plugin core instance

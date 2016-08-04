@@ -135,16 +135,11 @@ class ACFTC_Field {
 
 		if ( !empty( $this->type ) ) {
 
-			// if extended functionality
-			if ( file_exists( ACFTC_Core::$plugin_path . 'extend' ) &&
-				 in_array( $this->type, ACFTC_Core::$extended_types ) ) {
-				$render_partial = ACFTC_Core::$plugin_path . 'extend/render/' . $this->type . '.php';
-			}
-			// else if one of the basic field types
-			elseif ( in_array( $this->type, ACFTC_Core::$basic_types ) ) {
+			// Basic types
+			if ( in_array( $this->type, ACFTC_Core::$basic_types ) ) {
 				$render_partial = ACFTC_Core::$plugin_path . 'render/basic.php';
 			}
-			// else field type has it's own partial
+			// Field types with their own partial
 			else {
 				$render_partial = ACFTC_Core::$plugin_path . 'render/' . $this->type . '.php';
 			}
@@ -199,7 +194,7 @@ class ACFTC_Field {
 				include( $this->render_partial );
 			}
 			// Field supported by TC Pro only
-			elseif ( in_array( $this->type, ACFTC_Core::$extended_types ) ) {
+			elseif ( in_array( $this->type, ACFTC_Core::$tc_pro_field_types ) ) {
 				echo $this->indent . htmlspecialchars( "<?php // Upgrade to ACF Theme Code Pro for " . $this->type . " field support. ?>" ) . "\n";
 				echo $this->indent . htmlspecialchars( "<?php // Visit http://www.hookturn.io for more information. ?>" ) . "\n";
 			}

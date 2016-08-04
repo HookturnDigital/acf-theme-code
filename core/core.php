@@ -23,8 +23,8 @@ class ACFTC_Core {
 		'radio'
 	);
 
-	// Extended functionality types
-	public static $extended_types = array(
+	// Field types supported by TC Pro
+	public static $tc_pro_field_types = array(
 		'flexible_content',
 		'repeater',
 		'gallery',
