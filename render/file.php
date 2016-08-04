@@ -5,9 +5,9 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 
-if ( "postmeta" == ACFTCP_Core::$db_table ) { // ACF
+if ( "postmeta" == ACFTC_Core::$db_table ) { // ACF
 	$return_format = $this->settings['save_format'];
-} elseif ( "posts" == ACFTCP_Core::$db_table ) { // ACF PRO
+} elseif ( "posts" == ACFTC_Core::$db_table ) { // ACF PRO
 	$return_format = $this->settings['return_format'];
 }
 
