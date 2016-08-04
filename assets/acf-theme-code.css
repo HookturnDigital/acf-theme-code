@@ -24,7 +24,6 @@
 	content: attr(data-pseudo-content);
 	display: block;
 	color:#999;
-	font-weight: bold;
 	-webkit-user-select: none;  /* Chrome all / Safari all */
 	-moz-user-select: none;     /* Firefox all */
 	-ms-user-select: none;      /* IE 10+ */
@@ -103,4 +102,9 @@
 	box-shadow: none !important;
 	-webkit-animation: zoomitbig 300ms ease-out;
    -moz-animation: zoomitbig 300ms ease-out
+}
+
+a.acftc-contact-link {
+	display: block;
+	padding:10px;
 }
