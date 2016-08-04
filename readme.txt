@@ -32,9 +32,10 @@ No more constantly referring to the ACF documentation to see how to implement a 
 * Great for offline documentation
 * Code generated is based on examples from the official ACF documentation
 
-> <strong>Upgrade to ACF Theme Code Pro </strong><br>
-> Generate code for all ACF Pro & a range of 3rd party ACF fields
-> [Find out more about ACT Theme Code Pro](https://hookturn.io/downloads/acf-theme-code-pro/)
+> <strong>Upgrade to ACF Theme Code Pro</strong><br>
+> ALL ACF Pro field types are supported, including the popular Repeater, Flexible Content and Gallery field types.
+> 10+ ACF Add-on field types are also supported, including Font Awesome and Image Crop.
+> [Find out more about ACF Theme Code Pro](https://hookturn.io/downloads/acf-theme-code-pro/)
 
 = Support for the following fields: =
 * Text
