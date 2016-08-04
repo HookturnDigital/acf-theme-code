@@ -200,7 +200,8 @@ class ACFTC_Field {
 			}
 			// Field not supported at all (yet)
 			else {
-				echo $this->indent . "This field type is not supported.\n";
+				echo $this->indent . htmlspecialchars( "<?php // The " . $this->type  . " field type is not supported in this verison of the plugin. ?>" ) . "\n";
+				echo $this->indent . htmlspecialchars( "<?php // Contact http://www.hookturn.io to request support for this field type. ?>" ) . "\n";
 			}
 
 			if ( 0 == $this->nesting_level ) {
