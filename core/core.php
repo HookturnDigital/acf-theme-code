@@ -28,8 +28,17 @@ class ACFTC_Core {
 		'flexible_content',
 		'repeater',
 		'gallery',
+		'clone',
 		'font-awesome',
-		'google_font_selector'
+		'google_font_selector',
+		'rgba_color',
+		'image_crop',
+		'markdown',
+		'nav_menu',
+		'smart_button',
+		'sidebar_selector',
+		'tablepress_field',
+		'table'
 	);
 
 	/**
