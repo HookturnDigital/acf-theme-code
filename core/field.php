@@ -162,7 +162,7 @@ class ACFTC_Field {
 		if ( !empty($this->type) ) {
 
 			// if the field is a tab or a message, bail early
-			if($this->type == 'tab' || $this->type == 'message') {
+			if ( $this->type == 'tab' || $this->type == 'message' ) {
 				return;
 			}
 
@@ -174,7 +174,7 @@ class ACFTC_Field {
 				// dev - debug label
 				//echo htmlspecialchars('<h2>'. $this->label .'</h2>');
 
-				// dev - debug field partial 
+				// dev - debug field partial
 				//echo htmlspecialchars('<h2>'. $this->render_partial .'</h2>');
 
 				// code block title - simple version
@@ -194,10 +194,17 @@ class ACFTC_Field {
 
 			}
 
-			// include field type partial
+			// Field supported by TC (free)
 			if ( file_exists( $this->render_partial ) ) {
 				include( $this->render_partial );
-			} else {
+			}
+			// Field supported by TC Pro only
+			elseif ( in_array( $this->type, ACFTC_Core::$extended_types ) ) {
+				echo $this->indent . htmlspecialchars( "<?php // Upgrade to ACF Theme Code Pro for " . $this->type . " field support. ?>" ) . "\n";
+				echo $this->indent . htmlspecialchars( "<?php // Visit http://www.hookturn.io for more information. ?>" ) . "\n";
+			}
+			// Field not supported at all (yet)
+			else {
 				echo $this->indent . "This field type is not supported.\n";
 			}
 
