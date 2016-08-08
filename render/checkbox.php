@@ -22,7 +22,7 @@ if($return_format == 'value' || $return_format == 'label') {
 } elseif($return_format == 'array') {
 
     // Return the code to output the value from a multi dimensional array
-    echo $this->indent . htmlspecialchars("<?php // ".$this->name." (".$return_format.")")."\n";
+    echo $this->indent . htmlspecialchars("<?php // ".$this->name." ( ".$return_format." )")."\n";
     echo $this->indent . htmlspecialchars("\$".$this->name."_array = ". $this->get_field_method . "( '" . $this->name . "' );")."\n";
     echo $this->indent . htmlspecialchars("if ( \$".$this->name."_array ):")."\n";
     echo $this->indent . htmlspecialchars("	foreach ( \$".$this->name."_array as \$".$this->name."_item ):")."\n";
