@@ -126,7 +126,7 @@ class ACFTC_Core {
 
 		add_meta_box(
 			'acftc-meta-box',
-			__( 'Template Code', 'textdomain' ),
+			__( 'Theme Code', 'textdomain' ),
 			array( $this, 'display_callback'),
 			array( 'acf', 'acf-field-group' ) // same meta box used for ACF and ACF PRO
 		);
