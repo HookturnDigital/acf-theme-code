@@ -5,7 +5,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Get return format
-$return_format = $this->settings['return_format'];
+$return_format = isset( $this->settings['return_format'] ) ? $this->settings['return_format'] : '';
 
 // If returned as object
 if ( $return_format == 'object' ) {

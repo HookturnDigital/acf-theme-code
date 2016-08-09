@@ -5,9 +5,9 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( "postmeta" == ACFTC_Core::$db_table ) { // ACF
-	$return_format = $this->settings['save_format'];
+	$return_format = isset( $this->settings['save_format'] ) ? $this->settings['save_format'] : '';
 } elseif ( "posts" == ACFTC_Core::$db_table ) { // ACF PRO
-	$return_format = $this->settings['return_format'];
+	$return_format = isset( $this->settings['return_format'] ) ? $this->settings['return_format'] : '';
 }
 
 // If image is returned as an array

@@ -13,7 +13,7 @@ $return_format = isset( $this->settings['return_format'] ) ? $this->settings['re
 //echo htmlspecialchars('<h3>'.$multiple_values.$return_format.'</h3>')."\n";
 
 // If single
-if($multiple_values == 0) {
+if($multiple_values === 0) { // note === operator
 
 	// if this a single option returned as an array
 	if($return_format == 'array') {
@@ -35,7 +35,7 @@ if($multiple_values == 0) {
 }
 
 // If multiple
-if($multiple_values == 1) {
+if($multiple_values === 1) {
 
 	if($return_format == 'array') {
 

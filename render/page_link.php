@@ -4,9 +4,8 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 // Check if single or multiple values can be stored
-$multiple_values = $this->settings['multiple'];
+$multiple_values = isset( $this->settings['multiple'] ) ? $this->settings['multiple'] : '';
 
 // If single
 if($multiple_values == 0) {
