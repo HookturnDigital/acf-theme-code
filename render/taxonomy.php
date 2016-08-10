@@ -5,8 +5,8 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Get return format and type
-$return_format = $this->settings['return_format'];
-$taxonomy_field_type = $this->settings['field_type'];
+$return_format = isset( $this->settings['return_format'] ) ? $this->settings['return_format'] : '';
+$taxonomy_field_type = isset( $this->settings['field_type'] ) ? $this->settings['field_type'] : '';
 
 if ( $return_format == 'object' ) {
 
