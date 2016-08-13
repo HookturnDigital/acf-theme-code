@@ -11,31 +11,16 @@ ACF Theme Code will automatically generate the code needed to implement Advanced
 == Description ==
 ACF Theme Code is an extension for the awesome [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields/) plugin.
 
-We've created this plugin to save developers time when it comes to implementing Advanced Custom Fields in their WordPress themes.
+When you publish, edit or update an ACF Field Group, the code required to implement each field is displayed for you in the Theme Code section at the bottom of the page.
 
-= Existing / common ACF workflow: =
-
-1. Create Field Group
-2. Search ACF documentation for how to implement a particular field type and it's settings (return values etc)
-3. Copy example code from ACF documentation and paste it into your theme or plugin
-4. Go through and customise all the field names in the example code
-
-= New / improved workflow with ACF Theme Code: =
-
-1. Create Field Group
-2. Use clipboard icon to copy and paste a field's already customised code into your theme
-
-No more constantly referring to the ACF documentation to see how to implement a particular field. No more customising field names in code examples.
+The code is based on the ACF documentation and it's automatically updated to match the fields you have created.
+Use the clipboard icon to easily copy these code blocks and paste them into your theme to get you started and save loads of time!
 
 = Features include: =
-* Easily copy / paste the field code into your theme
+* Easily copy the code into your theme
 * Great for offline documentation
-* Code generated is based on examples from the official ACF documentation
-
-> <strong>Upgrade to ACF Theme Code Pro</strong><br>
-> ALL ACF Pro field types are supported, including the popular Repeater, Flexible Content and Gallery field types.
-> 10+ ACF Add-on field types are also supported, including Font Awesome and Image Crop.
-> [Find out more about ACF Theme Code Pro](https://hookturn.io/downloads/acf-theme-code-pro/)
+* Based on the official ACF documentation
+* Field names and variables are automatically updated
 
 = Support for the following fields: =
 * Text
@@ -59,9 +44,14 @@ No more constantly referring to the ACF documentation to see how to implement a 
 * Relationship (Object and ID return values)
 * Taxonomy (Checkbox, Multi Select, Radio Buttons and Select field types)
 
+> <strong>Upgrade to ACF Theme Code Pro</strong><br>
+> ACF Theme Code Pro generates code for all ACF Pro field types including the Clone, Repeater, Gallery and Flexible Content field.<br>
+> ACF Theme Code Pro generates code for a range of popular 3rd party fields including the Font Awesome field and Image Crop Field.<br>
+> [Find out more about ACF Theme Code Pro](https://hookturn.io/downloads/acf-theme-code-pro/)
+
 = Requires =
 * ACF version 4.4.7 or higher
-* ACF Pro version 5.3.9 or higher
+* ACF Pro version 5.4 or higher
 
 == Installation ==
 
@@ -83,12 +73,16 @@ At the moment it's for developer convenience, so you can easily wrap our code in
 We're open to suggestions and keen to improve the code generated based on community discussion.
 
 == Screenshots ==
-1. When you publish, edit or update an ACF Field Group, the code required to implement each field is displayed for you in the Template Code section below. Use the clipboard icon to easily copy these code blocks and paste them into your theme.
+1. When you publish, edit or update an ACF Field Group, the code required to implement each field is displayed for you in the Theme Code section. Use the clipboard icon to easily copy these code blocks and paste them into your theme.
 
 == Changelog ==
 
+= 1.1.1 =
+* Field: Post Object field now works correctly for ACF 4
+* Core: Various internal code improvements
+
 = 1.1.0 =
-* Various field formatting improvements inline with ACF Theme Code Pro
+* Fields: All field formatting improved inline with ACF Theme Code Pro
 
 = 1.0.0 =
-* First version
+* Core: First version
