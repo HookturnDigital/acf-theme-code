@@ -39,6 +39,6 @@ if ( $return_format == 'id' ) {
 // If file is returned as a URL
 if ( $return_format == 'url' ) {
 	echo $this->indent . htmlspecialchars("<?php if ( ".$this->get_field_method . "( '".$this->name."' ) ) { ?>")."\n";
-	echo $this->indent . htmlspecialchars("	<a href=\"<?php the_field( '".$this->name."' ); ?>\">Download File</a>")."\n";
+	echo $this->indent . htmlspecialchars("	<a href=\"<?php " . $this->the_field_method . "( '".$this->name."' ); ?>\">Download File</a>")."\n";
 	echo $this->indent . htmlspecialchars("<?php } ?>"."\n");
 }
