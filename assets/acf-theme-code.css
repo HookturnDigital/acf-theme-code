@@ -134,3 +134,10 @@ a.acftc-pro-notice__link:hover {
 .acftc-intro-notice {
 	padding:10px 20px;
 }
+
+.li-field-label {
+	width: 31% !important;
+}
+.li-field-type {
+	width: 22% !important;
+}

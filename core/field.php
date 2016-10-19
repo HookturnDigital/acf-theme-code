@@ -161,6 +161,12 @@ class ACFTC_Field {
 				return;
 			}
 
+			if ( "postmeta" == ACFTC_Core::$db_table ) { // ACF
+				$quicklink_id = $this->settings['key'];
+			} elseif ( "posts" == ACFTC_Core::$db_table ) { // ACF PRO
+				$quicklink_id = $this->id;
+			}
+
 			if ( 0 == $this->nesting_level ) {
 
 				// open field meta div
@@ -179,7 +185,7 @@ class ACFTC_Field {
 				echo '</div>';
 
 				// open div for field code wrapper (used for the button etc)
-				echo '<div class="acftc-field-code" id="acftc-'.$this->settings['key'].'">';
+				echo '<div class="acftc-field-code" id="acftc-'.$quicklink_id.'">';
 
 
 				// copy button
