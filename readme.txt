@@ -16,6 +16,8 @@ When you publish, edit or update an ACF Field Group, the code required to implem
 The code is based on the ACF documentation and it's automatically updated to match the fields you have created.
 Use the clipboard icon to easily copy these code blocks and paste them into your theme to get you started and save loads of time!
 
+[youtube https://www.youtube.com/watch?v=g9APGNJMy7k]
+
 = Features include: =
 * Easily copy the code into your theme
 * Great for offline documentation
@@ -52,6 +54,9 @@ Use the clipboard icon to easily copy these code blocks and paste them into your
 = Requires =
 * ACF version 4.4.7 or higher
 * ACF Pro version 5.4 or higher
+
+= Thankyou =
+Thanks to all of our beta testers including Elliot Condon, Phil Smart, Richard Johnston & James Bundey!
 
 == Installation ==
 
