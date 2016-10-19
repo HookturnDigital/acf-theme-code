@@ -12,7 +12,7 @@
 			var field_key = $(this).attr("data-id");
 			console.log(field_key);
 			var data_type = $(this).attr("data-type");
-			if ((data_type != 'tab') && (data_type != 'message')) {
+			if ((data_type != 'tab') && (data_type != 'message') ) {
   				$(this).find('.row_options').append( '<span>| <a class="acftc-scroll__link" href="#acftc-' + field_key + '">Code</a></span>' );
 			}
 		});
@@ -21,7 +21,7 @@
 		$( ".acf-field-object" ).each(function( index ) {
 			var field_key = $(this).attr("data-id");
 			var data_type = $(this).attr("data-type");
-			if ((data_type != 'tab') && (data_type != 'message')) {
+			if ((data_type != 'tab') && (data_type != 'message') && (setting != 'repeater')) {
 				$(this).find('.row-options').append( '<a class="acftc-scroll__link" href="#acftc-' + field_key + '">Code</a>' );
 			}
 		});
