@@ -152,12 +152,18 @@ class ACFTC_Core {
 
 		}
 
-		$parent_field_group->render_field_group();
+		if ( !empty( $parent_field_group->fields ) ) {
 
-		// Upgrade to PRO notice - if we're in ACF v4 (free)
-		// if ( self::$db_table == 'postmeta') {
+			$parent_field_group->render_field_group();
+
+			// Upgrade to TC Pro notice
 			echo '<div class="acftc-pro-notice"><a class="acftc-pro-notice__link" href="https://hookturn.io/downloads/acf-theme-code-pro/?utm_source=acftcfree" target="_blank">Upgrade to <strong>ACF Theme Code Pro</strong>.</a></div>';
-		// }
+
+		} else {
+
+			echo "Publish fields to generate code.";
+
+		}
 
 	}
 
