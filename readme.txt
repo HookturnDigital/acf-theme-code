@@ -82,6 +82,9 @@ We're open to suggestions and keen to improve the code generated based on commun
 
 == Changelog ==
 
+= 1.1.2 =
+* Fix: Use the_sub_field method for nested File fields with return format URL
+
 = 1.1.1 =
 * Field: Post Object field now works correctly for ACF 4
 * Core: Various internal code improvements
