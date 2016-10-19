@@ -32,7 +32,13 @@
 			  var target = $(this.hash);
 			  target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
 			  var target_offset = target.offset().top;
-			  var customoffset = 60;
+
+			  // after the large bp, the header is fixed
+			  if (window.matchMedia("(max-width: 782px)").matches) {
+				  var customoffset = 80; // increase offset for small screens
+			  } else {
+				  var customoffset = 60; // default offset for large screens
+			  }
 
 			  if (target.length) {
 			    $('html,body').animate({
