@@ -13,6 +13,7 @@ class ACFTC_Field {
 	private $nesting_level;
 	private $indent_count;
 	private $indent = '';
+	private $quick_link_id = '';
 	private $the_field_method = 'the_field';
 	private $get_field_method = 'get_field';
 	private $get_field_object_method = 'get_field_object';
@@ -93,6 +94,14 @@ class ACFTC_Field {
 			$this->name = $this->settings['name'];
 			$this->type = $this->settings['type'];
 
+			// if field is not nested
+			if ( 0 == $this->nesting_level ) {
+
+				// get quick link id
+				$this->quick_link_id = $this->settings['key'];
+
+			}
+
 		}
 
 	}
@@ -110,6 +119,14 @@ class ACFTC_Field {
 			$this->label = $field_data_obj->post_title;
 			$this->name = $field_data_obj->post_excerpt;
 			$this->type = $this->settings['type'];
+
+			// if field is not nested
+			if ( 0 == $this->nesting_level ) {
+
+				// get quick link id
+				$this->quick_link_id = $this->id;
+
+			}
 
 		}
 
@@ -161,12 +178,6 @@ class ACFTC_Field {
 				return;
 			}
 
-			if ( "postmeta" == ACFTC_Core::$db_table ) { // ACF
-				$quicklink_id = $this->settings['key'];
-			} elseif ( "posts" == ACFTC_Core::$db_table ) { // ACF PRO
-				$quicklink_id = $this->id;
-			}
-
 			if ( 0 == $this->nesting_level ) {
 
 				// open field meta div
@@ -185,7 +196,7 @@ class ACFTC_Field {
 				echo '</div>';
 
 				// open div for field code wrapper (used for the button etc)
-				echo '<div class="acftc-field-code" id="acftc-'.$quicklink_id.'">';
+				echo '<div class="acftc-field-code" id="acftc-' . $this->quick_link_id . '">';
 
 
 				// copy button
@@ -193,7 +204,6 @@ class ACFTC_Field {
 
 				// PHP code block for field
 				echo '<pre class="line-numbers"><code class="language-php">';
-				//var_dump($this);
 
 			}
 
