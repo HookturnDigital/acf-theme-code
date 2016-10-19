@@ -17,12 +17,9 @@
 			}
 		});
 
-
-
 		// ACF 5 - add anchor link to each field object
-
 		var fieldsV5 = $('#acf-field-group-fields .acf-field-object')
-		
+
 			// exclude nested fields
 			.filter( function() {
 			    return $(this).parentsUntil('#acf-field-group-fields', '.acf-field-object').length === 0;
