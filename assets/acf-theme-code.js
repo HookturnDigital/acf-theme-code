@@ -10,7 +10,6 @@
 		// ACF 4 - add anchor link to each field object
 		$( "div.field" ).each(function( index ) {
 			var field_key = $(this).attr("data-id");
-			// console.log(field_key);
 			var data_type = $(this).attr("data-type");
 			if ( ( data_type != 'tab' ) && ( data_type != 'message') ) {
   				$(this).find('.row_options').append( '<span>| <a class="acftc-scroll__link" href="#acftc-' + field_key + '">Code</a></span>' );
@@ -48,9 +47,9 @@
 
 			  // after the large bp, the header is fixed
 			  if (window.matchMedia("(max-width: 782px)").matches) {
-				  var customoffset = 80; // increase offset for small screens
+				var customoffset = 80; // increase offset for small screens
 			  } else {
-				  var customoffset = 60; // default offset for large screens
+				var customoffset = 60; // default offset for large screens
 			  }
 
 			  if (target.length) {
@@ -74,13 +73,9 @@
 		target: function(trigger) {
 			return trigger.nextElementSibling;
 		}
-
 	});
 
 	copyCode.on('success', function(e) {
-		//console.info('Action:', e.action);
-		//console.info('Text:', e.text);
-		//console.info('Trigger:', e.trigger);
 		e.clearSelection();
 	});
 
