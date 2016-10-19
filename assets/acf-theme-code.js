@@ -11,7 +11,10 @@
 		$( "div.field" ).each(function( index ) {
 			var field_key = $(this).attr("data-id");
 			console.log(field_key);
-  			$(this).find('.row_options').append( '<span>| <a class="acftc-scroll__link" href="#acftc-' + field_key + '">Code</a></span>' );
+			var data_type = $(this).attr("data-type");
+			if ((data_type != 'tab') && (data_type != 'message')) {
+  				$(this).find('.row_options').append( '<span>| <a class="acftc-scroll__link" href="#acftc-' + field_key + '">Code</a></span>' );
+			}
 		});
 
 		// ACF 5 - add anchor link to each field object
