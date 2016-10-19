@@ -3,7 +3,7 @@ Contributors: aaronrutley, ben-pearson
 Tags: acf,advanced custom fields,php,automation
 Requires at least: 4.5.3
 Tested up to: 4.6
-Stable tag: 1.0.0
+Stable tag: 1.2.0
 License: GPL2+
 
 ACF Theme Code will automatically generate the code needed to implement Advanced Custom Fields in your themes!
@@ -81,6 +81,10 @@ We're open to suggestions and keen to improve the code generated based on commun
 1. When you publish, edit or update an ACF Field Group, the code required to implement each field is displayed for you in the Theme Code section. Use the clipboard icon to easily copy these code blocks and paste them into your theme.
 
 == Changelog ==
+
+= 1.2.0 =
+* Core: Quicklinks feature with anchor links to the relevant theme code block
+* Core: Notice updates & various bug fixes
 
 = 1.1.2 =
 * Fix: Use the_sub_field method for nested File fields with return format URL
