@@ -179,13 +179,15 @@ class ACFTC_Field {
 				echo '</div>';
 
 				// open div for field code wrapper (used for the button etc)
-				echo '<div class="acftc-field-code">';
+				echo '<div class="acftc-field-code" id="acftc-'.$this->settings['key'].'">';
+
 
 				// copy button
 				echo '<a href="#" class="acftc-field__copy" title="Copy to Clipboard"></a>';
 
 				// PHP code block for field
 				echo '<pre class="line-numbers"><code class="language-php">';
+				//var_dump($this);
 
 			}
 

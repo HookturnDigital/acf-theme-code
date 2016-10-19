@@ -161,7 +161,7 @@ class ACFTC_Core {
 
 		} else {
 
-			echo "Publish fields to generate code.";
+			echo '<div class="acftc-intro-notice"><p>Create some fields and publish the field group to generate theme code.</p></div>';
 
 		}
 
