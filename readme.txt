@@ -1,8 +1,8 @@
 === ACF Theme Code ===
 Contributors: aaronrutley, benpearson
 Tags: acf,advanced custom fields,php,automation
-Requires at least: 4.5.3
-Tested up to: 4.6
+Requires at least: 4.7
+Tested up to: 4.7
 Stable tag: 1.2.0
 License: GPL2+
 
