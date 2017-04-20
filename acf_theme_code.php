@@ -13,6 +13,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+// define the version number
+define( 'ACFTC_FREE_VERSION', '1.3.0' );
+
 // Check for dashboard or admin panel
 if ( is_admin() ) {
 
@@ -32,7 +35,7 @@ if ( is_admin() ) {
 	{
 		static $instance;
 		if ( !$instance )
-			$instance = new ACFTC_Core( plugin_dir_path( __FILE__ ), plugin_dir_url( __FILE__ ), plugin_basename( __FILE__ ) );
+			$instance = new ACFTC_Core( plugin_dir_path( __FILE__ ), plugin_dir_url( __FILE__ ), plugin_basename( __FILE__ ), ACFTC_FREE_VERSION );
 		return $instance;
 	}
 

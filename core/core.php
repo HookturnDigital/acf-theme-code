@@ -7,7 +7,7 @@ class ACFTC_Core {
 	public static $plugin_path = '';
 	public static $plugin_url = '';
 	public static $plugin_basename = '';
-
+	public static $plugin_version = '';
 	public static $db_table = '';
 	public static $indent_repeater = 2;
 	public static $indent_flexible_content = 3;
@@ -44,12 +44,13 @@ class ACFTC_Core {
 	/**
 	 * ACFTC_Core constructor
 	 */
-	public function __construct( $plugin_path, $plugin_url, $plugin_basename ) {
+	public function __construct( $plugin_path, $plugin_url, $plugin_basename, $plugin_version ) {
 
 		// Paths and URLs
 		self::$plugin_path = $plugin_path;
 		self::$plugin_url = $plugin_url;
 		self::$plugin_basename = $plugin_basename;
+		self::$plugin_version = $plugin_version;
 
 		// Hooks
 		add_action( 'admin_init', array($this, 'acf_theme_code_pro_check') );
@@ -255,17 +256,17 @@ class ACFTC_Core {
 		if( 'acf-field-group' == $post_type || 'acf' == $post_type ) {
 
 			// Plugin styles
-			wp_enqueue_style( 'acftc_css', self::$plugin_url . 'assets/acf-theme-code.css');
+			wp_enqueue_style( 'acftc_css', self::$plugin_url . 'assets/acf-theme-code.css', '' , self::$plugin_version);
 
 			// Prism (code formatting)
-			wp_enqueue_style( 'acftc_prism_css', self::$plugin_url . 'assets/prism.css');
-			wp_enqueue_script( 'acftc_prism_js', self::$plugin_url . 'assets/prism.js' );
+			wp_enqueue_style( 'acftc_prism_css', self::$plugin_url . 'assets/prism.css', '' , self::$plugin_version);
+			wp_enqueue_script( 'acftc_prism_js', self::$plugin_url . 'assets/prism.js', '' , self::$plugin_version);
 
 			// Clipboard
-			wp_enqueue_script( 'acftc_clipboard_js', self::$plugin_url . 'assets/clipboard.js' );
+			wp_enqueue_script( 'acftc_clipboard_js', self::$plugin_url . 'assets/clipboard.js', '' , self::$plugin_version);
 
 			// Plugin js
-			wp_enqueue_script( 'acftc_js', self::$plugin_url . 'assets/acf-theme-code.js', array( 'acftc_clipboard_js' ), '', true );
+			wp_enqueue_script( 'acftc_js', self::$plugin_url . 'assets/acf-theme-code.js', array( 'acftc_clipboard_js' ), '', self::$plugin_version );
 
 		}
 
