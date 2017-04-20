@@ -91,31 +91,46 @@ class ACFTC_Core {
 	 */
 	public function set_db_table() {
 
-		/**
-		 * If fields are created with ACF and then ACF PRO is installed and
-		 * activated, the ACF fields are moved to the ACF PRO database structure.
-		 * If ACF PRO is then deactivated and ACF is reactivated the fields
-		 * won't appear in the admin.
-		 *
-		 * If fields are created with ACF PRO and then ACF is activated
-		 * as well, only the fields created in ACF PRO will be visible
-		 * in the the admin.
-		 *
-		 * If fields are created with ACF after activating and
-		 * deactivating ACF PRO, they will only appear while ACF is
-		 * activated and ACF PRO is deactivated. ACF PRO doesn't appear to
-		 * convert fields to the new database structure more than once.
-		 *
-		 * Hence the following logic order is used:
-		 */
+		// If we can't detect ACF
+		if ( ! class_exists( 'acf' )  ) {
 
-		if ( is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) || // ACF Pro
-			 is_plugin_active( 'advanced-custom-fields-pro-beta/acf.php') || // ACF Pro Beta
-			 is_plugin_active( 'acf-pro-master/acf.php' ) ) { // ACF Pro Beta alt
-			 self::$db_table = 'posts';
-		} elseif  ( is_plugin_active('advanced-custom-fields/acf.php' ) ) {
-			self::$db_table = 'postmeta';
+			// bail early
+			return;
+
+		 }
+
+		// Check for the function acf_get_setting - this came in version 5
+		if ( function_exists( 'acf_get_setting' ) ) {
+
+			// Get the version to be sure
+			// This will return a srting of the version eg '5.0.0'
+			$version = acf_get_setting( 'version' );
+
+		} else {
+
+			// Use the version 4 logic to get the version
+			// This will return a string if the plugin is active eg '4.4.11'
+			// This will retrn the string 'version' if the plugin is not active
+			$version = apply_filters( 'acf/get_info', 'version' );
+
 		}
+
+		// Get only the major version from the version string (the first character)
+		$major_version = substr( $version, 0 , 1 );
+
+		// If the major version is 5
+		if( $major_version == '5' ) {
+
+			// Set the db table to posts
+			self::$db_table = 'posts';
+
+		// If the major version is 4
+		} elseif( $major_version == '4' ) {
+
+			// Set the db table to postmeta
+			self::$db_table = 'postmeta';
+
+		} 
 
 	}
 
