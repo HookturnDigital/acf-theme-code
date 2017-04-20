@@ -14,7 +14,7 @@ if ( "postmeta" == ACFTC_Core::$db_table ) { // ACF
 if ( $return_format == 'array' ) {
 	echo $this->indent . htmlspecialchars("<?php \$".$this->name." = " . $this->get_field_method . "( '".$this->name."' ); ?>")."\n";
 	echo $this->indent . htmlspecialchars("<?php if ( \$".$this->name." ) { ?>")."\n";
-	echo $this->indent . htmlspecialchars("	<a href=\"<?php echo \$".$this->name."['url']; ?>\" /><?php echo \$".$this->name."['filename']; ?></a>"."\n");
+	echo $this->indent . htmlspecialchars("	<a href=\"<?php echo \$".$this->name."['url']; ?>\"><?php echo \$".$this->name."['filename']; ?></a>"."\n");
 	echo $this->indent . htmlspecialchars("<?php } ?>"."\n");
 }
 
@@ -22,7 +22,7 @@ if ( $return_format == 'array' ) {
 if ( $return_format == 'object') {
 	echo $this->indent . htmlspecialchars("<?php \$".$this->name." = " . $this->get_field_method . "( '".$this->name."' ); ?>")."\n";
 	echo $this->indent . htmlspecialchars("<?php if ( \$".$this->name." ) { ?>")."\n";
-	echo $this->indent . htmlspecialchars("	<a href=\"<?php echo \$".$this->name."['url']; ?>\" /><?php echo\$".$this->name."['title']; ?></a>"."\n");
+	echo $this->indent . htmlspecialchars("	<a href=\"<?php echo \$".$this->name."['url']; ?>\"><?php echo \$".$this->name."['title']; ?></a>"."\n");
 	echo $this->indent . htmlspecialchars("<?php } ?>"."\n");
 }
 
