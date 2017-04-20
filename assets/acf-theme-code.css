@@ -115,6 +115,10 @@ a.acftc-contact-link {
 	background: #f1f1f1;
 }
 
+.acftc-pro-notice--top {
+	margin-top:0px;
+}
+
 a.acftc-pro-notice__link {
 	padding:10px 20px;
 	text-decoration: none;

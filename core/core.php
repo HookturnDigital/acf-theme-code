@@ -80,9 +80,9 @@ class ACFTC_Core {
 	 */
 	public function disabled_notice() {
 		echo '<div class="notice notice-success is-dismissible">';
-    		echo '<p>Plugin <strong>Advanced Custom Fields: Theme Code Pro</strong> is activated so plugin <strong>Advanced Custom Fields: Theme Code</strong> has been disabled.</p>';
+			echo '<p>Plugin <strong>Advanced Custom Fields: Theme Code Pro</strong> is activated so plugin <strong>Advanced Custom Fields: Theme Code</strong> has been disabled.</p>';
 		echo '</div>';
-    }
+	}
 
 
 	/**
@@ -111,7 +111,7 @@ class ACFTC_Core {
 		if ( is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) || // ACF Pro
 			 is_plugin_active( 'advanced-custom-fields-pro-beta/acf.php') || // ACF Pro Beta
 			 is_plugin_active( 'acf-pro-master/acf.php' ) ) { // ACF Pro Beta alt
- 			self::$db_table = 'posts';
+			 self::$db_table = 'posts';
 		} elseif  ( is_plugin_active('advanced-custom-fields/acf.php' ) ) {
 			self::$db_table = 'postmeta';
 		}
@@ -143,12 +143,56 @@ class ACFTC_Core {
 
 		if ( self::$db_table == 'postmeta') {
 
+			// Quick check for locations
+
+			// setup the location rules
+			$location_rules = [];
+
+			global $wpdb;
+
+			// Prepend table prefix
+			$table = $wpdb->prefix . 'postmeta';
+
+			// Query postmeta table for location rules associated with this field group
+			$query_results = $wpdb->get_results( "SELECT * FROM " . $table . " WHERE post_id = " . $post->ID . " AND meta_key LIKE 'rule'" );
+
+			foreach ( $query_results as $query_result ) {
+
+				// Unserialize location rule data
+				$location_rule = unserialize( $query_result->meta_value );
+
+				// add the location to the array
+				$location_rules[] = $location_rule;
+
+			}
+
+			// count the location rules
+			$location_rules_count = count( $location_rules );
+
+			// if we have more than 1 location show the notice
+			if( $location_rules_count >= 2 ) {
+				echo '<div class="acftc-pro-notice acftc-pro-notice--top"><a class="acftc-pro-notice__link" href="https://hookturn.io/downloads/acf-theme-code-pro/?utm_source=acftclocation" target="_blank">Upgrade to <strong>ACF Theme Code Pro</strong> to generate code for each of your location rules.</a></div>';
+			}
+
+			// render the field group
 			$parent_field_group = new ACFTC_Group( $post->ID );
+
 
 		} elseif ( self::$db_table == 'posts') {
 
-			$field_group_location = $this->get_field_group_locations( $post );
-			$parent_field_group = new ACFTC_Group( $post->ID, 0 , 0 , $field_group_location);
+			// get an array of the locations
+			$field_group_location_array = $this->get_field_group_locations( $post );
+
+			// count them
+			$field_group_location_array_count = count( $field_group_location_array );
+
+			// if we have more than 1 location show the notice
+			if( $field_group_location_array_count >= 2 ) {
+				echo '<div class="acftc-pro-notice acftc-pro-notice--top"><a class="acftc-pro-notice__link" href="https://hookturn.io/downloads/acf-theme-code-pro/?utm_source=acftclocation" target="_blank">Upgrade to <strong>ACF Theme Code Pro</strong> to generate code for each of your location rules.</a></div>';
+			}
+
+			// render the field group
+			$parent_field_group = new ACFTC_Group( $post->ID, 0 , 0 , '');
 
 		}
 
@@ -173,7 +217,11 @@ class ACFTC_Core {
 	 *
 	 * @param WP_Post $post Current post object.
 	 */
+
 	private function get_field_group_locations( $post ) {
+
+		// define a locations array
+		$location_array = [];
 
 		// get field group locations from field group post content
 		if ( $post->post_content ) {
@@ -182,23 +230,18 @@ class ACFTC_Core {
 
 			foreach ( $field_group_location_content['location']  as $location_condition_group ) {
 
+
 				foreach ( $location_condition_group as $location_condition ) {
 
-					// TODO: currently this function only supports "options_page".
-
-					if ( "options_page" == $location_condition['param'] &&
-						 "==" == $location_condition['operator'] ) {
-
-						return "options_page";
-
-					}
+					$location_array[] = $location_condition['param'];
 
 				}
 
 			}
 
-		}
+			return $location_array;
 
+		}
 	}
 
 
