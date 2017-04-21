@@ -3,7 +3,7 @@
 Plugin Name: Advanced Custom Fields: Theme Code
 Plugin URI: http://www.hookturn.io
 Description: Generates theme code for ACF field groups to speed up development.
-Version: 1.2.0
+Version: 1.3.0
 Author: Aaron Rutley, Ben Pearson
 Author URI: http://www.hookturn.io
 License: GPLv2 or later
@@ -13,7 +13,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// define the version number
+// Define the version number
 define( 'ACFTC_FREE_VERSION', '1.3.0' );
 
 // Check for dashboard or admin panel

@@ -2,8 +2,8 @@
 Contributors: aaronrutley, benpearson
 Tags: acf,advanced custom fields,php,automation
 Requires at least: 4.7
-Tested up to: 4.7
-Stable tag: 1.2.0
+Tested up to: 4.7.4
+Stable tag: 1.3.0
 License: GPL2+
 
 ACF Theme Code will automatically generate the code needed to implement Advanced Custom Fields in your themes!
@@ -48,7 +48,7 @@ Use the clipboard icon to easily copy these code blocks and paste them into your
 
 > <strong>Upgrade to ACF Theme Code Pro</strong><br>
 > ACF Theme Code Pro generates code for all ACF Pro field types including the Clone, Repeater, Gallery and Flexible Content field.<br>
-> ACF Theme Code Pro generates code for a range of popular 3rd party fields including the Font Awesome field and Image Crop Field.<br>
+> Our Pro version also generates code for a range of popular 3rd party fields and we generate code for location rules including Options Pages!
 > [Find out more about ACF Theme Code Pro](https://hookturn.io/downloads/acf-theme-code-pro/)
 
 = Requires =
@@ -70,7 +70,7 @@ Thanks to all of our beta testers including Elliot Condon, Phil Smart, Richard J
 = Does this plugin support ACF Pro ?  =
 
 This plugin has basic support for ACF Pro (we support all the fields found in the ACF free version).
-Our premium version - [ACF Theme Code Pro](https://hookturn.io/downloads/acf-theme-code-pro/) supports all the fields in ACF Pro and a range of other 3rd Party Fields.
+Our premium version - [ACF Theme Code Pro](https://hookturn.io/downloads/acf-theme-code-pro/) supports all the fields in ACF Pro, a range of other 3rd Party Fields & locations rules (like options).
 
 = Why is there so many PHP tags in the code that's generated ? =
 
@@ -81,6 +81,10 @@ We're open to suggestions and keen to improve the code generated based on commun
 1. When you publish, edit or update an ACF Field Group, the code required to implement each field is displayed for you in the Theme Code section. Use the clipboard icon to easily copy these code blocks and paste them into your theme.
 
 == Changelog ==
+= 1.3.0 =
+* Core : Support for ACF Pro when bundled in a Theme
+* Fix : HTML output by the File field is now valid
+* Core : Notice for location rule support (now in ACF Theme Code Pro) 
 
 = 1.2.0 =
 * Core: Quicklinks feature with anchor links to the relevant theme code block
