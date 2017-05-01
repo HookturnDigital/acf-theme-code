@@ -12,7 +12,7 @@
 			var field_key = $(this).attr("data-id");
 			var data_type = $(this).attr("data-type");
 			if ( ( data_type != 'tab' ) && ( data_type != 'message') ) {
-  				$(this).find('.row_options').append( '<span>| <a class="acftc-scroll__link" href="#acftc-' + field_key + '">Code</a></span>' );
+				  $(this).find('.row_options').append( '<span>| <a class="acftc-scroll__link" href="#acftc-' + field_key + '">Code</a></span>' );
 			}
 		});
 
@@ -21,7 +21,7 @@
 
 			// exclude nested fields
 			.filter( function() {
-			    return $(this).parentsUntil('#acf-field-group-fields', '.acf-field-object').length === 0;
+				return $(this).parentsUntil('#acf-field-group-fields', '.acf-field-object').length === 0;
 			});
 
 		fieldsV5.each(function( index ) {
@@ -39,7 +39,7 @@
 		});
 
 		// smooth scroll - with offset for title and WP admin bar
-		$('a[href*=\\#]:not([href=\\#]))').click(function() {
+		$("a[href*=\\#]:not([href=\\#])").click(function() {
 			if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
 			  var target = $(this.hash);
 			  target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
@@ -53,10 +53,10 @@
 			  }
 
 			  if (target.length) {
-			    $('html,body').animate({
-			      scrollTop: target_offset - customoffset
-			    }, 1000);
-			    return false;
+				$('html,body').animate({
+				  scrollTop: target_offset - customoffset
+				}, 1000);
+				return false;
 			  }
 			}
 		});
