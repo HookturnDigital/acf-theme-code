@@ -130,7 +130,7 @@ class ACFTC_Core {
 			// Set the db table to postmeta
 			self::$db_table = 'postmeta';
 
-		} 
+		}
 
 	}
 
@@ -281,7 +281,7 @@ class ACFTC_Core {
 			wp_enqueue_script( 'acftc_clipboard_js', self::$plugin_url . 'assets/clipboard.js', '' , self::$plugin_version);
 
 			// Plugin js
-			wp_enqueue_script( 'acftc_js', self::$plugin_url . 'assets/acf-theme-code.js', array( 'acftc_clipboard_js' ), '', self::$plugin_version );
+			wp_enqueue_script( 'acftc_js', self::$plugin_url . 'assets/acf-theme-code.js', array( 'acftc_clipboard_js' ), self::$plugin_version );
 
 		}
 
