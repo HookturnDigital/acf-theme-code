@@ -187,7 +187,7 @@ class ACFTC_Core {
 
 			// if we have more than 1 location show the notice
 			if( $location_rules_count >= 2 ) {
-				echo '<div class="acftc-pro-notice acftc-pro-notice--top"><a class="acftc-pro-notice__link" href="https://hookturn.io/downloads/acf-theme-code-pro/?utm_source=acftclocation" target="_blank">Upgrade to <strong>ACF Theme Code Pro</strong> to generate code for each of your location rules.</a></div>';
+				echo '<div class="acftc-pro-notice acftc-pro-notice--top"><a class="acftc-pro-notice__link" href="https://hookturn.io/downloads/acf-theme-code-pro/?utm_source=acftclocation" target="_blank">Generate code for each of your Location rules with <strong>ACF Theme Code Pro</strong></a></div>';
 			}
 
 			// render the field group
@@ -204,7 +204,7 @@ class ACFTC_Core {
 
 			// if we have more than 1 location show the notice
 			if( $field_group_location_array_count >= 2 ) {
-				echo '<div class="acftc-pro-notice acftc-pro-notice--top"><a class="acftc-pro-notice__link" href="https://hookturn.io/downloads/acf-theme-code-pro/?utm_source=acftclocation" target="_blank">Upgrade to <strong>ACF Theme Code Pro</strong> to generate code for each of your location rules.</a></div>';
+				echo '<div class="acftc-pro-notice acftc-pro-notice--top"><a class="acftc-pro-notice__link" href="https://hookturn.io/downloads/acf-theme-code-pro/?utm_source=acftclocation" target="_blank">Generate code for each of your Location rules with <strong>ACF Theme Code Pro</strong></a></div>';
 			}
 
 			// render the field group
