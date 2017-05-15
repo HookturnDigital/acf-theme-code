@@ -159,10 +159,8 @@ class ACFTC_Core {
 
 		if ( self::$db_table == 'postmeta') {
 
-			// Quick check for locations
-
-			// setup the location rules
-			$location_rules = [];
+			// Setup a counter for location rules
+			$location_rules_count = '';
 
 			global $wpdb;
 
@@ -172,18 +170,8 @@ class ACFTC_Core {
 			// Query postmeta table for location rules associated with this field group
 			$query_results = $wpdb->get_results( "SELECT * FROM " . $table . " WHERE post_id = " . $post->ID . " AND meta_key LIKE 'rule'" );
 
-			foreach ( $query_results as $query_result ) {
-
-				// Unserialize location rule data
-				$location_rule = unserialize( $query_result->meta_value );
-
-				// add the location to the array
-				$location_rules[] = $location_rule;
-
-			}
-
-			// count the location rules
-			$location_rules_count = count( $location_rules );
+			// count the results
+			$location_rules_count = count( $query_results );
 
 			// if we have more than 1 location show the notice
 			if( $location_rules_count >= 2 ) {
@@ -196,11 +184,8 @@ class ACFTC_Core {
 
 		} elseif ( self::$db_table == 'posts') {
 
-			// get an array of the locations
-			$field_group_location_array = $this->get_field_group_locations( $post );
-
 			// count them
-			$field_group_location_array_count = count( $field_group_location_array );
+			$field_group_location_array_count = $this->get_field_group_locations( $post );
 
 			// if we have more than 1 location show the notice
 			if( $field_group_location_array_count >= 2 ) {
@@ -237,25 +222,18 @@ class ACFTC_Core {
 	private function get_field_group_locations( $post ) {
 
 		// define a locations array
-		$location_array = [];
+		$location_array = array();
 
 		// get field group locations from field group post content
 		if ( $post->post_content ) {
 
 			$field_group_location_content = unserialize( $post->post_content );
 
-			foreach ( $field_group_location_content['location']  as $location_condition_group ) {
+			// count the locations
+			$location_array_count = count( $field_group_location_content['location'] );
 
-
-				foreach ( $location_condition_group as $location_condition ) {
-
-					$location_array[] = $location_condition['param'];
-
-				}
-
-			}
-
-			return $location_array;
+			// return the count
+			return $location_array_count;
 
 		}
 	}

@@ -2,8 +2,8 @@
 Contributors: aaronrutley, benpearson
 Tags: acf,advanced custom fields,php,automation
 Requires at least: 4.7
-Tested up to: 4.7.4
-Stable tag: 1.3.0
+Tested up to: 4.8.0
+Stable tag: 1.3.1
 License: GPL2+
 
 ACF Theme Code will automatically generate the code needed to implement Advanced Custom Fields in your themes!
@@ -81,10 +81,14 @@ We're open to suggestions and keen to improve the code generated based on commun
 1. When you publish, edit or update an ACF Field Group, the code required to implement each field is displayed for you in the Theme Code section. Use the clipboard icon to easily copy these code blocks and paste them into your theme.
 
 == Changelog ==
+
+= 1.3.1 =
+* Fix: Updates to array count functionality for PHP 5.4
+
 = 1.3.0 =
 * Core : Support for ACF Pro when bundled in a Theme
 * Fix : HTML output by the File field is now valid
-* Core : Notice for location rule support (now in ACF Theme Code Pro) 
+* Core : Notice for location rule support (now in ACF Theme Code Pro)
 
 = 1.2.0 =
 * Core: Quicklinks feature with anchor links to the relevant theme code block
