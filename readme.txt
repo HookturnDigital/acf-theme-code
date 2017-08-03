@@ -1,20 +1,23 @@
-=== ACF Theme Code ===
+=== ACF Theme Code for Advanced Custom Fields ===
 Contributors: aaronrutley, benpearson
 Tags: acf,advanced custom fields,php,automation
-Requires at least: 4.7
-Tested up to: 4.8.0
+Requires at least: 4.8
+Tested up to: 4.8.1
 Stable tag: 1.3.1
 License: GPL2+
 
 ACF Theme Code will automatically generate the code needed to implement Advanced Custom Fields in your themes!
 
 == Description ==
-ACF Theme Code is an extension for the awesome [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields/) plugin.
-
 When you publish, edit or update an ACF Field Group, the code required to implement each field is displayed for you in the Theme Code section at the bottom of the page.
 
 The code is based on the ACF documentation and it's automatically updated to match the fields you have created.
 Use the clipboard icon to easily copy these code blocks and paste them into your theme to get you started and save loads of time!
+
+> <strong>Upgrade to ACF Theme Code Pro</strong><br>
+> ACF Theme Code Pro generates code for all ACF Pro field types including the Clone, Repeater, Gallery and Flexible Content field.<br>
+> Our Pro version also generates code for a range of popular 3rd party fields and we generate code for location rules including Options Pages!
+> [Find out more about ACF Theme Code Pro](https://hookturn.io/downloads/acf-theme-code-pro/)
 
 [youtube https://www.youtube.com/watch?v=g9APGNJMy7k]
 
@@ -53,7 +56,7 @@ Use the clipboard icon to easily copy these code blocks and paste them into your
 
 = Requires =
 * ACF version 4.4.7 or higher
-* ACF Pro version 5.4 or higher
+* ACF Pro version 5.6 or higher
 
 = Thankyou =
 Thanks to all of our beta testers including Elliot Condon, Phil Smart, Richard Johnston & James Bundey!
@@ -76,6 +79,9 @@ Our premium version - [ACF Theme Code Pro](https://hookturn.io/downloads/acf-the
 
 At the moment it's for developer convenience, so you can easily wrap our code in your own HTML markup.
 We're open to suggestions and keen to improve the code generated based on community discussion.
+
+= Does this plugin support locations (like options) ?  =
+This plugin does not support locations, however our premium version - [ACF Theme Code Pro](https://hookturn.io/downloads/acf-theme-code-pro/) supports a range of locations rules.
 
 == Screenshots ==
 1. When you publish, edit or update an ACF Field Group, the code required to implement each field is displayed for you in the Theme Code section. Use the clipboard icon to easily copy these code blocks and paste them into your theme.
