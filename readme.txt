@@ -3,7 +3,7 @@ Contributors: aaronrutley, benpearson
 Tags: acf,advanced custom fields,php,automation
 Requires at least: 4.8
 Tested up to: 4.8.1
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPL2+
 
 ACF Theme Code will automatically generate the code needed to implement Advanced Custom Fields in your themes!
@@ -89,7 +89,7 @@ This plugin does not support locations, however our premium version - [ACF Theme
 == Changelog ==
 
 = 1.3.2 =
-* Fix: Updated clipboard.js & bug fix for the copy to clipboard feature  
+* Fix: Updated clipboard.js & bug fix for the copy to clipboard feature
 
 = 1.3.1 =
 * Fix: Updates to array count functionality for PHP 5.4
