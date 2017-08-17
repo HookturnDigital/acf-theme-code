@@ -88,6 +88,9 @@ This plugin does not support locations, however our premium version - [ACF Theme
 
 == Changelog ==
 
+= 1.3.2 =
+* Fix: Updated clipboard.js & bug fix for the copy to clipboard feature  
+
 = 1.3.1 =
 * Fix: Updates to array count functionality for PHP 5.4
 
