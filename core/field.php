@@ -76,6 +76,9 @@ class ACFTC_Field {
 			$this->construct_from_posts_table( $field_data_obj );
 		}
 
+		// variable name that is used in code rendered
+		$this->var_name = $this->get_var_name( $this->name );
+
 		// partial to use for rendering
 		$this->render_partial = $this->get_render_partial();
 
@@ -146,6 +149,21 @@ class ACFTC_Field {
 
 	}
 
+	// Get the variable name
+		private function get_var_name( $name ) {
+
+			// Replace any hyphens with underscores
+			$var_name = str_replace('-', '_', $name);
+
+			// Replace any other special chars with underscores
+			$var_name = preg_replace('/[^A-Za-z0-9\-]/', '_', $var_name);
+
+			// Replace multiple underscores with single
+			$var_name = preg_replace('/_+/', '_', $var_name);
+
+			return $var_name;
+
+		}
 
 	// Get the path to the partial used for rendering the field
 	private function get_render_partial() {
