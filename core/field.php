@@ -191,8 +191,11 @@ class ACFTC_Field {
 
 		if ( !empty($this->type) ) {
 
-			// if the field is a tab or a message, bail early
-			if ( $this->type == 'tab' || $this->type == 'message' ) {
+			// Ignore these fields tyles
+			$ignore_field_types = array( 'tab', 'message', 'accordion', 'enhanced_message', 'row' );
+
+			// Bail early for these ignored field types
+			if ( in_array( $this->type, $ignore_field_types )) {
 				return;
 			}
 
@@ -215,7 +218,6 @@ class ACFTC_Field {
 
 				// open div for field code wrapper (used for the button etc)
 				echo '<div class="acftc-field-code" id="acftc-' . $this->quick_link_id . '">';
-
 
 				// copy button
 				echo '<a href="#" class="acftc-field__copy" title="Copy to Clipboard"></a>';
