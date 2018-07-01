@@ -20,7 +20,8 @@ class ACFTC_Core {
 		'color_picker',
 		'wysiwyg',
 		'oembed',
-		'radio'
+		'radio',
+		'range'
 	);
 
 	// Field types supported by TC Pro
