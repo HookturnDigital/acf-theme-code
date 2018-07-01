@@ -221,21 +221,15 @@ class ACFTC_Core {
 
 	private function get_field_group_locations( $post ) {
 
-		// define a locations array
-		$location_array = array();
+		// acf field group global
+		global $field_group;
 
-		// get field group locations from field group post content
-		if ( $post->post_content ) {
+		// count the location array
+		$location_array_count = count( $field_group['location'] );
 
-			$field_group_location_content = unserialize( $post->post_content );
+		// return the count
+		return $location_array_count;
 
-			// count the locations
-			$location_array_count = count( $field_group_location_content['location'] );
-
-			// return the count
-			return $location_array_count;
-
-		}
 	}
 
 
