@@ -216,11 +216,9 @@ class ACFTC_Core {
 
 	/**
 	 * Get field group locations
-	 *
-	 * @param WP_Post $post Current post object.
 	 */
 
-	private function get_field_group_locations( $post ) {
+	private function get_field_group_locations() {
 
 		// acf field group global
 		global $field_group;
