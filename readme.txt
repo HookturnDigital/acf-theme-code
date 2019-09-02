@@ -1,9 +1,9 @@
 === ACF Theme Code for Advanced Custom Fields ===
-Contributors: aaronrutley, benpearson
+Contributors: aaronrutley, benpearson, philkurth
 Tags: acf,advanced custom fields,php,automation
 Requires at least: 4.8
-Tested up to: 4.9.6
-Stable tag: 1.4.0
+Tested up to: 5.2.2
+Stable tag: 1.4.1
 License: GPL2+
 
 ACF Theme Code will automatically generate the code needed to implement Advanced Custom Fields in your themes!
@@ -12,7 +12,9 @@ ACF Theme Code will automatically generate the code needed to implement Advanced
 When you publish, edit or update an ACF Field Group, the code required to implement each field is displayed for you in the Theme Code section at the bottom of the page.
 
 The code is based on the ACF documentation and it's automatically updated to match the fields you have created.
+
 Use the clipboard icon to easily copy these code blocks and paste them into your theme to get you started and save loads of time!
+
 
 > <strong>Upgrade to ACF Theme Code Pro</strong><br>
 > ACF Theme Code Pro generates code for all ACF Pro field types including the Clone, Repeater, Gallery and Flexible Content field.<br>
@@ -59,8 +61,8 @@ Use the clipboard icon to easily copy these code blocks and paste them into your
 > [Find out more about ACF Theme Code Pro](https://hookturn.io/downloads/acf-theme-code-pro/)
 
 = Requires =
-* ACF version 4.4.12 or higher
-* ACF Pro version 5.6 or higher
+* ACF version 5.8.3 or higher
+* ACF Pro version 5.8.3 or higher
 
 = Thank you =
 Thanks to all of our beta testers including Elliot Condon, Phil Smart, Richard Johnston & James Bundey!
