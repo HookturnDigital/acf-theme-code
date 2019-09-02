@@ -89,6 +89,9 @@ This plugin does not support locations, however our premium version - [ACF Theme
 
 == Changelog ==
 
+= 1.4.1 =
+* Compatibility with WordPress 5.2.2
+
 = 1.4.0 =
 * All ACF v5 Free Fields Supported including: Group, Button, Range and Link fields.
 * Fix: Bug with locations section on PHP 7.2
