@@ -14,19 +14,19 @@ $return_format = isset( $this->settings['return_format'] ) ? $this->settings['re
 
 // If not object (so ID or Null) and single
 if( $return_format != 'object' && $multiple_values == '0' ) {
-	echo $this->indent . htmlspecialchars("<?php \$".$this->name. ' = ' . $this->get_field_method . "( '" . $this->name ."' ); ?>")."\n";
-	echo $this->indent . htmlspecialchars("<?php // var_dump( \$".$this->name." ); ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php \$".$this->var_name. ' = ' . $this->get_field_method . "( '" . $this->name ."'". $this->location_rendered_param . " ); ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php // var_dump( \$".$this->var_name." ); ?>")."\n";
 }
 
 // If not object (so ID or Null) and multiple
 if( $return_format != 'object' && $multiple_values == '1' ) {
-	echo $this->indent . htmlspecialchars("<?php \$".$this->name.' = ' . $this->get_field_method . "( '" . $this->name ."' ); ?>")."\n";
-	echo $this->indent . htmlspecialchars("<?php // var_dump( \$".$this->name." ); ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php \$".$this->var_name.' = ' . $this->get_field_method . "( '" . $this->name ."'". $this->location_rendered_param . " ); ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php // var_dump( \$".$this->var_name." ); ?>")."\n";
 }
 
 // If object and single
 if( $return_format == 'object' && $multiple_values == '0' ) {
-	echo $this->indent . htmlspecialchars("<?php \$post_object = " . $this->get_field_method . "( '" . $this->name . "' ); ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php \$post_object = " . $this->get_field_method . "( '" . $this->name ."'". $this->location_rendered_param . " ); ?>")."\n";
 	echo $this->indent . htmlspecialchars("<?php if ( \$post_object ): ?>")."\n";
 	echo $this->indent . htmlspecialchars("	<?php \$post = \$post_object; ?>")."\n";
 	echo $this->indent . htmlspecialchars("	<?php setup_postdata( \$post ); ?> ")."\n";
@@ -37,7 +37,7 @@ if( $return_format == 'object' && $multiple_values == '0' ) {
 
 // If object and multiple
 if( $return_format == 'object' && $multiple_values == '1' ) {
-	echo $this->indent . htmlspecialchars("<?php \$post_objects = " . $this->get_field_method . "( '" . $this->name . "' ); ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php \$post_objects = " . $this->get_field_method . "( '" . $this->name ."'". $this->location_rendered_param . " ); ?>")."\n";
 	echo $this->indent . htmlspecialchars("<?php if ( \$post_objects ): ?>")."\n";
 	echo $this->indent . htmlspecialchars("	<?php foreach ( \$post_objects as \$post ):  ?>")."\n";
 	echo $this->indent . htmlspecialchars("		<?php setup_postdata( \$post ); ?>")."\n";

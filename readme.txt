@@ -3,7 +3,7 @@ Contributors: aaronrutley, benpearson, philkurth
 Tags: acf,advanced custom fields,php,automation
 Requires at least: 4.8
 Tested up to: 5.2.2
-Stable tag: 1.4.1
+Stable tag: 2.5.0
 License: GPL2+
 
 ACF Theme Code will automatically generate the code needed to implement Advanced Custom Fields in your themes!

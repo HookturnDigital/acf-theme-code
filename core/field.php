@@ -8,20 +8,24 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 class ACFTC_Field {
 
-	private $render_partial;
+	protected $render_partial;
 
-	private $nesting_level;
-	private $indent_count;
-	private $indent = '';
-	private $quick_link_id = '';
-	private $the_field_method = 'the_field';
-	private $get_field_method = 'get_field';
-	private $get_field_object_method = 'get_field_object';
+	protected $nesting_level;
+	protected $indent_count;
+	protected $indent = '';
 
-	private $id = null; // only used if posts table and required for flexible layouts
-	private $label;
-	private $name;
-	private $type;
+	protected $exclude_html_wrappers = false;
+
+	protected $quick_link_id = '';
+	protected $the_field_method = 'the_field';
+	protected $get_field_method = 'get_field';
+	protected $get_field_object_method = 'get_field_object';
+
+	protected $id = null; // only used if posts table and required for flexible layouts
+	protected $label;
+	protected $name;
+	protected $type;
+	protected $var_name;
 
 	/**
 	 * All unserialized field data to be used in partials for edge cases.
@@ -29,41 +33,43 @@ class ACFTC_Field {
 	 */
 	public $settings;
 
-	private $location;
+	protected $location_rule_param = ''; // eg. 'block'
+	protected $location_rendered_param = ''; // eg. 'acf/example'
+
+	protected $clone = false;
 
 
 	/**
 	 * Constructor
 	 *
-	 * @param $nesting_level	int
-	 * @param $indent_count		int
-	 * @param $location			string
-	 * @param $field_data_obj	object
-	 * @param $field_id			int
+	 * @param array $args Array of arguments.
 	 */
-	function __construct( $nesting_level = 0, $indent_count = 0 , $location = '', $field_data_obj = null, $field_id = null ) {
+	function __construct( $args = array() ) {
 
-		$this->nesting_level = $nesting_level;
-		$this->indent_count = $indent_count;
+		$default_args = array(
+			'nesting_level' => 0,
+			'indent_count' => 0,
+			'location_rule_param' => '',
+			'field_data_obj' => null,
+			'clone_parent_acftc_field' => null,
+			'exclude_html_wrapper' => false // Change to true for debug
+		);
 
-		$this->location = $location;
+		$args = array_merge( $default_args, $args ); 
 
-		// if location set to options page, add the options parameter
-		if ($this->location == 'options_page') {
-			$this->location = '\', \'option';
+		$this->nesting_level = $args['nesting_level'];
+		$this->indent_count = $args['indent_count'];
 
-		// else set location to an empty string
-		} else {
-			$this->location = '';
-		}
+		$this->location_rule_param = $args['location_rule_param'];
+		$this->location_rendered_param = $this->get_location_rendered_param();
 
-		// if field is nested
+		// Calc indent string
+		$this->indent = $this->get_indent();
+
+		// If field is nested
 		if ( 0 < $this->nesting_level ) {
 
-			// calc indent string
-			$this->indent = $this->get_indent();
-
-			// use ACF sub field methods instead
+			// Use ACF sub field methods instead
 			$this->the_field_method = 'the_sub_field';
 			$this->get_field_method = 'get_sub_field';
 			$this->get_field_object_method = 'get_sub_field_object';
@@ -71,23 +77,59 @@ class ACFTC_Field {
 		}
 
 		if ( "postmeta" == ACFTC_Core::$db_table ) {
-			$this->construct_from_postmeta_table( $field_data_obj );
+			$this->construct_from_postmeta_table( $args['field_data_obj'] );
 		} elseif ( "posts" == ACFTC_Core::$db_table ) {
-			$this->construct_from_posts_table( $field_data_obj );
+			$this->construct_from_posts_table( $args['field_data_obj'] );
 		}
 
 		// variable name that is used in code rendered
 		$this->var_name = $this->get_var_name( $this->name );
 
+		// cloned fields
+		if ( $args['clone_parent_acftc_field'] ) {
+
+			$this->clone = true;
+			$clone_settings = $args['clone_parent_acftc_field']->settings;
+
+			// Reset location rule paramater
+			$this->location_rule_param = $args['location_rule_param'];
+
+			if ( 1 === $clone_settings['prefix_name'] ) {
+				$this->name = $args['clone_parent_acftc_field']->name . '_' . $this->name;
+			}
+
+		}
+
 		// partial to use for rendering
 		$this->render_partial = $this->get_render_partial();
+
+		$this->exclude_html_wrappers = $args['exclude_html_wrappers'];
 
 	}
 
 	// Set field properties using data from postmeta table
 	private function construct_from_postmeta_table( $field_data_obj ) {
 
-		if ( !empty( $field_data_obj ) ) {
+		if ( empty( $field_data_obj ) ) {
+			return false;
+		}
+
+		// if repeater add on is used, field data will be in an array
+		if ( is_array( $field_data_obj ) ) {
+
+			// Put all field data including sub fields in settings.
+			// This is necessary to support nested repeaters created with the
+			// Repeater Add On and is only done is this case.
+			$this->settings = $field_data_obj;
+
+			// to do : note absence of ID property here
+			$this->label = $field_data_obj['label'];
+			$this->name = $field_data_obj['name'];
+			$this->type = $field_data_obj['type'];
+
+		}
+		// field data is an object
+		else {
 
 			// unserialize meta values
 			$this->settings = unserialize( $field_data_obj->meta_value );
@@ -97,13 +139,13 @@ class ACFTC_Field {
 			$this->name = $this->settings['name'];
 			$this->type = $this->settings['type'];
 
-			// if field is not nested
-			if ( 0 == $this->nesting_level ) {
+		}
 
-				// get quick link id
-				$this->quick_link_id = $this->settings['key'];
+		// if field is not nested
+		if ( 0 == $this->nesting_level ) {
 
-			}
+			// get quick link id
+			$this->quick_link_id = $this->settings['key'];
 
 		}
 
@@ -113,28 +155,27 @@ class ACFTC_Field {
 	// Set field properties using data from posts table
 	private function construct_from_posts_table( $field_data_obj ) {
 
-		if ( !empty( $field_data_obj ) ) {
+		if ( empty( $field_data_obj ) ) {
+			return false;
+		}
 
-			// unserialize content
-			$this->settings = unserialize( $field_data_obj->post_content );
+		// unserialize content
+		$this->settings = unserialize( $field_data_obj->post_content );
 
-			$this->id = $field_data_obj->ID; // required for flexible layout
-			$this->label = $field_data_obj->post_title;
-			$this->name = $field_data_obj->post_excerpt;
-			$this->type = $this->settings['type'];
+		$this->id = $field_data_obj->ID; // required for flexible layout
+		$this->label = $field_data_obj->post_title;
+		$this->name = $field_data_obj->post_excerpt;
+		$this->type = $this->settings['type'];
 
-			// if field is not nested
-			if ( 0 == $this->nesting_level ) {
+		// if field is not nested
+		if ( 0 == $this->nesting_level ) {
 
-				// get quick link id
-				$this->quick_link_id = $this->id;
-
-			}
+			// get quick link id
+			$this->quick_link_id = $this->id;
 
 		}
 
 	}
-
 
 	// Get indent string for nested fields
 	private function get_indent() {
@@ -150,33 +191,58 @@ class ACFTC_Field {
 	}
 
 	// Get the variable name
-		private function get_var_name( $name ) {
+	private function get_var_name( $name ) {
 
-			// Replace any hyphens with underscores
-			$var_name = str_replace('-', '_', $name);
+		// Replace any hyphens with underscores
+		$var_name = str_replace('-', '_', $name);
 
-			// Replace any other special chars with underscores
-			$var_name = preg_replace('/[^A-Za-z0-9\-]/', '_', $var_name);
+		// Replace any other special chars with underscores
+		$var_name = preg_replace('/[^A-Za-z0-9\-]/', '_', $var_name);
 
-			// Replace multiple underscores with single
-			$var_name = preg_replace('/_+/', '_', $var_name);
+		// Replace multiple underscores with single
+		$var_name = preg_replace('/_+/', '_', $var_name);
 
-			return $var_name;
+		return $var_name;
+
+	}
+
+	/**
+	 * Get location paramater to be rendered
+	 * 
+	 * @return string Containing a variable name or value
+	 **/
+	protected function get_location_rendered_param() {
+
+		// If location set to options page, add the options parameter
+		if ( $this->location_rule_param == 'options_page') {
+
+			return ', \'option\'';
+
+		} else {
+
+			return '';
 
 		}
 
+	}
+
 	// Get the path to the partial used for rendering the field
-	private function get_render_partial() {
+	protected function get_render_partial() {
 
-		if ( !empty( $this->type ) ) {
+		if ( $this->type ) {
 
-			// Basic types
-			if ( in_array( $this->type, ACFTC_Core::$basic_types ) ) {
-				$render_partial = ACFTC_Core::$plugin_path . 'render/basic.php';
-			}
+            // Basic field types with a shared partial
+            if ( in_array( $this->type, ACFTC_Core::$field_types_basic ) ) {
+
+                $render_partial = ACFTC_PLUGIN_DIR_PATH . 'render/basic.php';
+                
+            }
+
 			// Field types with their own partial
 			else {
-				$render_partial = ACFTC_Core::$plugin_path . 'render/' . $this->type . '.php';
+
+                $render_partial = ACFTC_PLUGIN_DIR_PATH . 'render/' . $this->type . '.php';
+                
 			}
 
 			return $render_partial;
@@ -185,70 +251,134 @@ class ACFTC_Field {
 
 	}
 
+	/**
+	 * Is ignored field type
+	 *
+	 * @param string $field_type
+	 * @return bool
+	 **/
+	protected function is_ignored_field_type( $field_type = '' ) {
 
-	// Render theme PHP for field
-	public function render_field() {
+		return in_array( $field_type, ACFTC_Core::$ignored_field_types ); 
 
-		if ( !empty($this->type) ) {
+	}
 
-			// Ignore these fields tyles
-			$ignore_field_types = array( 'tab', 'message', 'accordion', 'enhanced_message', 'row' );
+	/**
+	 * Is debugging
+	 *
+	 * @return bool
+	 **/
+	private function is_debugging() {
 
-			// Bail early for these ignored field types
-			if ( in_array( $this->type, $ignore_field_types )) {
-				return;
-			}
+		// TODO Move this to core?
 
-			if ( 0 == $this->nesting_level ) {
+		if ( !isset( $_GET["debug"] ) ) {
+			return false;
+		}
 
-				// open field meta div
-				echo '<div class="acftc-field-meta">';
+		$debug_mode = htmlspecialchars( $_GET["debug"] );
 
-				// dev - debug label
-				//echo htmlspecialchars('<h2>'. $this->label .'</h2>');
+		return ( $debug_mode == 'on' );
 
-				// dev - debug field partial
-				//echo htmlspecialchars('<h2>'. $this->render_partial .'</h2>');
+	}
 
-				// code block title - simple version
-				echo '<span class="acftc-field-meta__title" data-pseudo-content="'. $this->label .'"></span>';
+	/**
+	 * Field has HTML wrapper
+	 *
+	 * @return bool
+	 **/
+	private function needs_html_wrapper() {
 
-				// close field meta div
-				echo '</div>';
+		return ( 0 == $this->nesting_level && !$this->clone );
 
-				// open div for field code wrapper (used for the button etc)
-				echo '<div class="acftc-field-code" id="acftc-' . $this->quick_link_id . '">';
+	}
 
-				// copy button
-				echo '<a href="#" class="acftc-field__copy" title="Copy to Clipboard"></a>';
+	/**
+	 * Get HTML for title in field code block
+	 *
+	 * @return string
+	 **/
+	private function get_field_html_title() {
 
-				// PHP code block for field
-				echo '<pre class="line-numbers"><code class="language-php">';
+		ob_start();
 
-			}
+		if ( $this->is_debugging() ) { 
 
-			// Field supported by TC (free)
-			if ( file_exists( $this->render_partial ) ) {
-				include( $this->render_partial );
-			}
-			// Field supported by TC Pro only
-			elseif ( in_array( $this->type, ACFTC_Core::$tc_pro_field_types ) ) {
-				echo $this->indent . htmlspecialchars( "<?php // Upgrade to ACF Theme Code Pro for " . $this->type . " field support. ?>" ) . "\n";
-				echo $this->indent . htmlspecialchars( "<?php // Visit http://www.hookturn.io for more information. ?>" ) . "\n";
-			}
-			// Field not supported at all (yet)
-			else {
-				echo $this->indent . htmlspecialchars( "<?php // The " . $this->type  . " field type is not supported in this version of the plugin. ?>" ) . "\n";
-				echo $this->indent . htmlspecialchars( "<?php // Contact http://www.hookturn.io to request support for this field type. ?>" ) . "\n";
-			}
+			echo htmlspecialchars('<h2>Debug: '. $this->label .'</h2>');
 
-			if ( 0 == $this->nesting_level ) {
+		} else {
 
-				// close PHP code block
-				echo '</div></code></pre>';
-			}
+			// Echo the code block title as pseudo content to avoid selection 
+?>
+<span class="acftc-field-meta__title" data-type="<?php echo $this->type; ?>" data-pseudo-content="<?php echo $this->label; ?>"></span>
+<?php
+		}
+
+		return ob_get_clean();
+
+	}
+
+	/**
+	 * Get the HTML for the body of the field's code block
+	 *
+	 * @return string 
+	 **/
+	protected function get_field_html_body() {
+
+		ob_start();
+
+		if ( file_exists( $this->render_partial ) ) {
+
+			include( $this->render_partial );
+
+		} elseif ( in_array( $this->type, ACFTC_Core::$field_types_all_tc_pro ) ) {
+
+			echo $this->indent . htmlspecialchars( "<?php // Upgrade to ACF Theme Code Pro for " . $this->type . " field support. ?>" ) . "\n";
+			echo $this->indent . htmlspecialchars( "<?php // Visit http://www.hookturn.io for more information. ?>" ) . "\n";
+			
+		} else {
+			
+			echo $this->indent . htmlspecialchars( "<?php // The " . $this->type  . " field type is not supported in this version of the plugin. ?>" ) . "\n";
+			echo $this->indent . htmlspecialchars( "<?php // Contact http://www.hookturn.io to request support for this field type. ?>" ) . "\n";
 
 		}
+
+		return ob_get_clean();
+
+	}
+
+	/**
+	 * Get the HTML for the field
+	 *
+	 * @return string HTML for the field
+	 **/
+	public function get_field_html() {
+		
+		if ( empty( $this->type ) || $this->is_ignored_field_type( $this->type ) ) {
+			return;
+		}
+
+		ob_start();
+
+		if ( $this->needs_html_wrapper() && !$this->exclude_html_wrappers ) { 
+
+?>
+	<div class="acftc-field-meta">
+		<?php echo $this->get_field_html_title();?>
+	</div>
+	<div class="acftc-field-code" id="acftc-<?php echo $this->quick_link_id; ?>">
+		<a href="#" class="acftc-field__copy acf-js-tooltip" title="Copy to clipboard"></a>
+		<pre class="line-numbers"><code class="language-php"><?php echo $this->get_field_html_body(); ?></code></pre>
+	</div>
+	
+<?php
+		} else {
+
+			echo $this->get_field_html_body();
+
+		}
+
+		return ob_get_clean();
 
 	}
 

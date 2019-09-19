@@ -3,6 +3,7 @@
 code {
 	padding:0 !important;
 	background: none !important;
+	margin:0 !important;
 }
 code[class*="language-"],
 pre[class*="language-"] {

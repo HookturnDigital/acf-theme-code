@@ -7,13 +7,21 @@
 			event.preventDefault();
 		});
 
+		// add the copy all button
+		$( "#acftc-meta-box .inside").prepend('<a href="#" class="acftc-copy-all acf-js-tooltip" title="Copy all to clipboard"></a>');
+		$( "#acftc-meta-box .toggle-indicator").hide();
+
 		// ACF 4 - add anchor link to each field object
 		$( "div.field" ).each(function( index ) {
 			var field_key = $(this).attr("data-id");
 			var data_type = $(this).attr("data-type");
-			if ( ( data_type != 'tab' ) && ( data_type != 'message') ) {
-				  $(this).find('.row_options').append( '<span>| <a class="acftc-scroll__link" href="#acftc-' + field_key + '">Code</a></span>' );
+
+			// find the parent class - this is to prevent mulitple links added to a repeater
+			var parent_class = $(this).parent().parent().prop('className');
+			if ( ( data_type != 'tab' ) && ( data_type != 'message') && ( parent_class == 'inside' ) ) {
+				  $(this).find('.row_options').first().append( '<span>| <a class="acftc-scroll__link" href="#acftc-' + field_key + '">Code</a></span>' );
 			}
+
 		});
 
 		// ACF 5 - add anchor link to each field object
@@ -39,44 +47,65 @@
 		});
 
 		// smooth scroll - with offset for title and WP admin bar
-		$("a[href*=\\#]:not([href=\\#])").click(function() {
-			if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-			  var target = $(this.hash);
-			  target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-			  var target_offset = target.offset().top;
+		$('a.acftc-scroll__link').click(function(event) {
 
-			  // after the large bp, the header is fixed
-			  if (window.matchMedia("(max-width: 782px)").matches) {
-				var customoffset = 80; // increase offset for small screens
-			  } else {
-				var customoffset = 60; // default offset for large screens
-			  }
+			// prevent default
+			event.preventDefault();
 
-			  if (target.length) {
-				$('html,body').animate({
-				  scrollTop: target_offset - customoffset
-				}, 1000);
-				return false;
-			  }
+			// find the location that's selected
+			var location = $( "#acftc-group-option option:selected" ).val();
+
+			// if there is nothing selected
+			if( location == null ) {
+				var location = 'acftc-meta-box .inside';
 			}
+
+			// find the field that we want to scroll to (from the hash)
+			var hash = $(this).attr("href");
+
+			// define a target field
+			var target = $('#' + location + ' ' + hash);
+
+			// find the offset from the top of our target field
+			var target_offset = target.offset().top;
+
+			// after the large bp, the header is fixed
+			if (window.matchMedia("(max-width: 782px)").matches) {
+				var customoffset = 80; // increase offset for small screens
+			} else {
+				var customoffset = 60; // default offset for large screens
+			}
+
+			$('html,body').animate({
+				scrollTop: target_offset - customoffset
+			}, 1000);
+
+			return false;
+
 		});
 
 	});
 
- } )( jQuery );
-
- // Instantiate clipboard
-
-(function(){
-
-	var copyCode = new Clipboard('.acftc-field__copy', {
+	var copyField = new Clipboard('.acftc-field__copy', {
 		target: function(trigger) {
 			return trigger.nextElementSibling;
 		}
 	});
 
-	copyCode.on('success', function(e) {
+	copyField.on('success', function(e) {
 		e.clearSelection();
 	});
 
-})();
+	// copy all
+	var copyAllFields = new Clipboard('.acftc-copy-all', {
+		text: function(trigger) {
+			var $allCodeBlocks = $('#acftc-meta-box .location-wrap--active .acftc-field-code pre'); // TODO `location-wrap--active is a problem when only one location? Also TC free.
+			return $allCodeBlocks.text();
+		}
+	});
+
+	copyAllFields.on('success', function(e) {
+		e.clearSelection();
+	});
+
+} )( jQuery );
