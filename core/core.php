@@ -138,40 +138,9 @@ final class ACFTC_Core {
 
 			add_action( 'acf/include_admin_tools' , array($this, 'add_location_registration_tool') );
 
-		} else {
-
-			add_action( 'admin_init', array($this, 'acf_theme_code_pro_check') );
-
-		}
+		} 
+		
 	}
-
-
-	/**
-	 * Check if ACF Theme Code Pro is activated
-	 */
-	public function acf_theme_code_pro_check() {
-
-		// If Theme Code Pro is activated, disable Theme Code (free) and display notice
-		if ( is_plugin_active( 'acf-theme-code-pro/acf_theme_code_pro.php' ) ) {
-			deactivate_plugins( ACFTC_PLUGIN_BASENAME );
-			add_action( 'admin_notices', array( $this, 'disabled_notice' ) );
-			if ( isset( $_GET['activate'] ) ) {
-				unset( $_GET['activate'] );
-			}
-		}
-
-	}
-
-
-	/**
-	 * ACF Theme Code (free) disabled notice
-	 */
-	public function disabled_notice() {
-		echo '<div class="notice notice-success is-dismissible">';
-			echo '<p>Plugin <strong>Advanced Custom Fields: Theme Code Pro</strong> is activated so plugin <strong>Advanced Custom Fields: Theme Code</strong> has been disabled.</p>';
-		echo '</div>';
-	}
-
 
 	/**
 	 * Set the DB Table (as this changes between version 4 and 5)
