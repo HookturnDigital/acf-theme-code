@@ -35,6 +35,6 @@ if ( !empty( $group_field_group->fields ) ) {
 // Group field has no sub fields
 else {
 
-	echo $this->indent . htmlspecialchars("<?php // warning: group '" . $this->name . "' has no sub fields ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php // warning: group field '" . $this->name . "' has no sub fields ?>")."\n";
 
 }

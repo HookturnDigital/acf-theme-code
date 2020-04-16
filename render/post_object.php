@@ -4,42 +4,40 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// Check if single or multiple values can be stored
-// NOTE: Value is a string
-$multiple_values = isset( $this->settings['multiple'] ) ? $this->settings['multiple'] : '';
-
-// Return format
-// NOTE: Not supported by ACF v4
+$multiple_values = isset( $this->settings['multiple'] ) ? $this->settings['multiple'] : ''; // Note value is a string
 $return_format = isset( $this->settings['return_format'] ) ? $this->settings['return_format'] : '';
 
-// If not object (so ID or Null) and single
-if( $return_format != 'object' && $multiple_values == '0' ) {
+if( $return_format == 'id' && $multiple_values == '0' ) { 
 	echo $this->indent . htmlspecialchars("<?php \$".$this->var_name. ' = ' . $this->get_field_method . "( '" . $this->name ."'". $this->location_rendered_param . " ); ?>")."\n";
-	echo $this->indent . htmlspecialchars("<?php // var_dump( \$".$this->var_name." ); ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php if ( \$".$this->var_name." ) : ?>")."\n";
+
+	echo $this->indent . htmlspecialchars("	<a href=\"<?php echo get_permalink( \$".$this->var_name." ); ?>\"><?php echo get_the_title( \$".$this->var_name." ); ?></a>")."\n";
+	echo $this->indent . htmlspecialchars("<?php endif; ?>")."\n";
 }
 
-// If not object (so ID or Null) and multiple
-if( $return_format != 'object' && $multiple_values == '1' ) {
-	echo $this->indent . htmlspecialchars("<?php \$".$this->var_name.' = ' . $this->get_field_method . "( '" . $this->name ."'". $this->location_rendered_param . " ); ?>")."\n";
-	echo $this->indent . htmlspecialchars("<?php // var_dump( \$".$this->var_name." ); ?>")."\n";
+if ( $return_format == 'id' && $multiple_values == '1' ) {
+	echo $this->indent . htmlspecialchars("<?php \$".$this->var_name." = " . $this->get_field_method . "( '" . $this->name ."'". $this->location_rendered_param . " ); ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php if ( \$".$this->var_name." ) : ?>")."\n";
+	echo $this->indent . htmlspecialchars("	<?php foreach ( \$".$this->var_name." as \$post_ids ) : ?>")."\n";
+	echo $this->indent . htmlspecialchars("		<a href=\"<?php echo get_permalink( \$post_ids ); ?>\"><?php echo get_the_title( \$post_ids ); ?></a>")."\n";
+	echo $this->indent . htmlspecialchars("	<?php endforeach; ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php endif; ?>")."\n";
 }
 
-// If object and single
-if( $return_format == 'object' && $multiple_values == '0' ) {
-	echo $this->indent . htmlspecialchars("<?php \$post_object = " . $this->get_field_method . "( '" . $this->name ."'". $this->location_rendered_param . " ); ?>")."\n";
-	echo $this->indent . htmlspecialchars("<?php if ( \$post_object ): ?>")."\n";
-	echo $this->indent . htmlspecialchars("	<?php \$post = \$post_object; ?>")."\n";
+if ( $return_format == 'object' && $multiple_values == '0' ) {
+	echo $this->indent . htmlspecialchars("<?php \$".$this->var_name." = " . $this->get_field_method . "( '" . $this->name ."'". $this->location_rendered_param . " ); ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php if ( \$".$this->var_name." ) : ?>")."\n";
+	echo $this->indent . htmlspecialchars("	<?php \$post = \$".$this->var_name."; ?>")."\n";
 	echo $this->indent . htmlspecialchars("	<?php setup_postdata( \$post ); ?> ")."\n";
-	echo $this->indent . htmlspecialchars("		<a href=\"<?php the_permalink(); ?>\"><?php the_title(); ?></a>")."\n";
+	echo $this->indent . htmlspecialchars("	<a href=\"<?php the_permalink(); ?>\"><?php the_title(); ?></a>")."\n";
 	echo $this->indent . htmlspecialchars("	<?php wp_reset_postdata(); ?>")."\n";
 	echo $this->indent . htmlspecialchars("<?php endif; ?>")."\n";
 }
 
-// If object and multiple
-if( $return_format == 'object' && $multiple_values == '1' ) {
-	echo $this->indent . htmlspecialchars("<?php \$post_objects = " . $this->get_field_method . "( '" . $this->name ."'". $this->location_rendered_param . " ); ?>")."\n";
-	echo $this->indent . htmlspecialchars("<?php if ( \$post_objects ): ?>")."\n";
-	echo $this->indent . htmlspecialchars("	<?php foreach ( \$post_objects as \$post ):  ?>")."\n";
+if ( $return_format == 'object' && $multiple_values == '1' ) {
+	echo $this->indent . htmlspecialchars("<?php \$".$this->var_name." = " . $this->get_field_method . "( '" . $this->name ."'". $this->location_rendered_param . " ); ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php if ( \$".$this->var_name." ) : ?>")."\n";
+	echo $this->indent . htmlspecialchars("	<?php foreach ( \$".$this->var_name." as \$post ) :  ?>")."\n";
 	echo $this->indent . htmlspecialchars("		<?php setup_postdata( \$post ); ?>")."\n";
 	echo $this->indent . htmlspecialchars("		<a href=\"<?php the_permalink(); ?>\"><?php the_title(); ?></a>")."\n";
 	echo $this->indent . htmlspecialchars("	<?php endforeach; ?>")."\n";

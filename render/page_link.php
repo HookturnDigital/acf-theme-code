@@ -4,19 +4,20 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// Check if single or multiple values can be stored
-// NOTE Value is a string
-$multiple_values = isset( $this->settings['multiple'] ) ? $this->settings['multiple'] : '';
+$multiple_values = isset( $this->settings['multiple'] ) ? $this->settings['multiple'] : ''; // Note: value is a string
 
-// If single
-if($multiple_values == '0') {
-	echo $this->indent . htmlspecialchars("<?php " . $this->the_field_method . "( '" . $this->name ."'". $this->location_rendered_param . " ); ?>")."\n";
+if ($multiple_values == '0') {
+	echo $this->indent . htmlspecialchars("<?php \$".$this->var_name." = " . $this->get_field_method . "( '" . $this->name ."'". $this->location_rendered_param . " ); ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php if ( \$".$this->var_name." ) : ?>")."\n";
+	echo $this->indent . htmlspecialchars("	<a href=\"<?php echo esc_url( \$".$this->var_name."); ?>\"><?php echo esc_html( \$".$this->var_name." ); ?></a>")."\n";
+	echo $this->indent . htmlspecialchars("<?php endif; ?>")."\n";
 }
 
-// If multiple
-if($multiple_values == '1') {
-	echo $this->indent . htmlspecialchars("<?php \$".$this->var_name."_items =  " . $this->get_field_method . "( '" . $this->name ."'". $this->location_rendered_param . " ); ?>")."\n";
-	echo $this->indent . htmlspecialchars("<?php foreach ( \$".$this->var_name."_items as \$".$this->var_name."_item ) { ?>")."\n";
-	echo $this->indent . htmlspecialchars("	<?php echo \$".$this->var_name."_item; ?> ")."\n";
-	echo $this->indent . htmlspecialchars("<?php } ?>")."\n";
+if ($multiple_values == '1') {
+	echo $this->indent . htmlspecialchars("<?php \$".$this->var_name."_urls =  " . $this->get_field_method . "( '" . $this->name ."'". $this->location_rendered_param . " ); ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php if ( \$".$this->var_name."_urls ) : ?>")."\n";
+	echo $this->indent . htmlspecialchars("	<?php foreach ( \$".$this->var_name."_urls as \$".$this->var_name."_url ) : ?>")."\n";
+	echo $this->indent . htmlspecialchars("		<a href=\"<?php echo esc_url( \$".$this->var_name."_url ); ?>\"><?php echo esc_html( \$".$this->var_name."_url ); ?></a>")."\n";
+	echo $this->indent . htmlspecialchars("	<?php endforeach; ?>")."\n";
+	echo $this->indent . htmlspecialchars("<?php endif; ?>")."\n";
 }
