@@ -84,6 +84,35 @@
 
 		});
 
+		
+		// Locations select
+		
+		// add active to the first location
+		$('#acftc-group-0').addClass('location-wrap--active');
+		
+		// On toggle of the location
+		$( "#acftc-group-option" ).change(function( event ) {
+			
+			console.log("select changed");
+			
+
+			// get the selected value
+			var activediv = $(this).val();
+			
+			// hide all the divs
+			$('.location-wrap').slideUp();
+			
+			// remove the active class from all the divs
+			$('.location-wrap').removeClass('location-wrap--active');
+			
+			// slide down the one we want
+			$('#' + activediv ).slideDown();
+			
+			// add the active class to the active div
+			$('#' + activediv ).addClass('location-wrap--active');
+			
+		});
+		
 	});
 
 	var copyField = new Clipboard('.acftc-field__copy', {
@@ -99,7 +128,7 @@
 	// copy all
 	var copyAllFields = new Clipboard('.acftc-copy-all', {
 		text: function(trigger) {
-			var $allCodeBlocks = $('#acftc-meta-box .location-wrap--active .acftc-field-code pre'); // TODO `location-wrap--active is a problem when only one location? Also TC free.
+			var $allCodeBlocks = $('#acftc-meta-box .location-wrap--active .acftc-field-code pre');
 			return $allCodeBlocks.text();
 		}
 	});
