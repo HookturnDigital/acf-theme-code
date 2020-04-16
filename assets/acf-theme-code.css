@@ -153,9 +153,17 @@ a.acftc-pro-notice__link:hover {
 .acf-locations {
 	border-bottom:1px solid #e5e5e5;
 }
+
 .acf-locations .acf-field .acf-label label {
-	line-height: 28px;
+	/* line-height: 28px; */
+	margin-bottom: 3px;
 }
+
+.acf-locations  .acf-label .description {
+    font-size: 12px;
+	color: #777777;
+}
+
 
 /* hide all the locations to start */
 .location-wrap {
