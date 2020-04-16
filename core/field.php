@@ -122,7 +122,7 @@ class ACFTC_Field {
 			// Repeater Add On and is only done is this case.
 			$this->settings = $field_data_obj;
 
-			// to do : note absence of ID property here
+			// TODO : note absence of ID property here
 			$this->label = $field_data_obj['label'];
 			$this->name = $field_data_obj['name'];
 			$this->type = $field_data_obj['type'];
@@ -134,7 +134,7 @@ class ACFTC_Field {
 			// unserialize meta values
 			$this->settings = unserialize( $field_data_obj->meta_value );
 
-			// to do : note absence of ID property here
+			// TODO : note absence of ID property here
 			$this->label = $this->settings['label'];
 			$this->name = $this->settings['name'];
 			$this->type = $this->settings['type'];
@@ -304,7 +304,7 @@ class ACFTC_Field {
 
 		if ( $this->is_debugging() ) { 
 
-			echo htmlspecialchars('<h2>Debug: '. $this->label .'</h2>');
+			echo htmlspecialchars('<h3>Debug: '. $this->label .'</h3>');
 
 		} else {
 

@@ -228,7 +228,7 @@ final class ACFTC_Core {
 	 */
 	public function add_location_registration_tool() {
 		
-		include( ACFTC_PLUGIN_DIR_PATH . 'pro/location-registration/ACFTC_Location_Registration.php'); // TODO update this patha and filename
+		include( ACFTC_PLUGIN_DIR_PATH . 'pro/location-registration/ACFTC_Location_Registration.php'); // TODO update this path and filename
 
 		if( function_exists('acf_register_admin_tool') ) {
 			acf_register_admin_tool( 'ACFTC_Location_Registration' );
