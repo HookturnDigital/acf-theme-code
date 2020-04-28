@@ -130,7 +130,7 @@ The _[ACF Theme Code PRO](https://hookturn.io/downloads/acf-theme-code-pro/)_ pl
 
 == Changelog ==
 
-= 3.0.0 =
+= 2.5.0 =
 * Support for WordPress 5.4
 * Support for all field types included in ACF 5.8.9 (including all their various settings)
 * Synced codebases for Theme Code and Theme Code Pro plugins where relevant
