@@ -41,10 +41,10 @@ final class ACFTC_Core {
 	 */
 	private static $field_types_basic_pro = array(
 		'extended-color-picker',
+		'star_rating_field',
 		'qtranslate_text',
 		'qtranslate_textarea',
 		'qtranslate_wysiwyg',
-		'star_rating_field',
 	);
 
 	/** 
@@ -56,40 +56,45 @@ final class ACFTC_Core {
 	 * Note: This array also includes TC Pro basic field types.
 	 */
 	public static $field_types_all_tc_pro = array(
-		'flexible_content',
-		'address',
+		// ACF Pro
 		'repeater',
+		'flexible_content',
 		'gallery',
 		'clone',
+
+		// 3rd party
 		'font-awesome',
 		'google_font_selector',
-		'rgba_color',
 		'image_crop',
 		'markdown',
-		'nav_menu',
-		'smart_button',
+		'rgba_color',
 		'sidebar_selector',
-		'tablepress_field',
+		'smart_button',
 		'table',
-		'acf_code_field',
+		'tablepress_field',
+		'address',
+		'number_slider',
 		'posttype_select',
+		'acf_code_field',
 		'link_picker',
 		'youtubepicker',
-		'number_slider',
 		'focal_point',
-		'qtranslate_image',
-		'qtranslate_file',
-		'forms',
-		'icon-picker',
+		'color_palette', // Color Palette
+		'forms', // Gravityforms and Ninjaforms
+		'icon-picker', // Icon Selector
 		'svg_icon',
-		'color_palette',
-		'swatch',
+		'swatch', // Color Palette
 		'image_aspect_ratio_crop',
-		'extended-color-picker',
+		'qtranslate_file', // qTranslate
+		'qtranslate_image', // qTranslate
+		'nav_menu',
+
+		// TC Pro basic types (see above)
+		'extended-color-picker', // RGBA Color Picker (https://github.com/constlab/acf-rgba-color-field)
+		'star_rating_field', // Star Rating
 		'qtranslate_text',
 		'qtranslate_textarea',
 		'qtranslate_wysiwyg',
-		'star_rating_field',
 	);
 
 	/**
