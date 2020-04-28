@@ -3,7 +3,7 @@ Contributors: benpearson, philkurth, aaronrutley
 Tags: acf,advanced custom fields,php,automation
 Requires at least: 4.9.0
 Tested up to: 5.4.0
-Stable tag: 3.0.0
+Stable tag: 2.5.0
 Requires PHP: 5.6
 License: GPL2+
 
@@ -134,8 +134,8 @@ The _[ACF Theme Code PRO](https://hookturn.io/downloads/acf-theme-code-pro/)_ pl
 * Support for WordPress 5.4
 * Support for all field types included in ACF 5.8.9 (including all their various settings)
 * Synced codebases for Theme Code and Theme Code Pro plugins where relevant
-* Add Copy all fields button (previously Theme Code Pro feature)
-* Include Location UI and move location related upgrade notice to code block.
+* Add 'Copy All' fields button (previously Theme Code Pro feature)
+* Include Location UI and move location related upgrade notice to code block
 * Added escaping to code rendered (in line with recent updates to ACF field documentation) 
 * A range of enhancements to code rendered for the following fields and field settings:
   * Gallery field (return types Array, URL and ID)
