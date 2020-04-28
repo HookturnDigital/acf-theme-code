@@ -120,7 +120,7 @@ final class ACFTC_Core {
 	private function set_basic_field_types() {
 
 		if ( ACFTC_IS_PRO ) {
-			self::$field_types_basic = self::$field_types_basic + self::$field_types_basic_pro;
+			self::$field_types_basic = array_merge( self::$field_types_basic, self::$field_types_basic_pro );
 		}
 
 	}
