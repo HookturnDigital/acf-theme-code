@@ -1,5 +1,5 @@
 === ACF Theme Code for Advanced Custom Fields ===
-Contributors: benpearson, philkurth, aaronrutley
+Contributors: benpearson, philkurth
 Tags: acf,advanced custom fields,php,automation
 Requires at least: 4.9.0
 Tested up to: 5.4.0
