@@ -131,13 +131,12 @@ The _[ACF Theme Code PRO](https://hookturn.io/downloads/acf-theme-code-pro/)_ pl
 == Changelog ==
 
 = 2.5.0 =
-* Support for WordPress 5.4
-* Support for all field types included in ACF 5.8.9 (including all their various settings)
-* Synced codebases for Theme Code and Theme Code Pro plugins where relevant
-* Add 'Copy All' fields button (previously Theme Code Pro feature)
-* Include Location UI and move location related upgrade notice to code block
-* Added escaping to code rendered (in line with recent updates to ACF field documentation) 
-* A range of enhancements to code rendered for the following fields and field settings:
+* Improve support for WordPress 5.4.
+* Improve support for all field types included in ACF PRO 5.8.9 (including all their various settings).
+* Improve codebase by syncing both free and pro foundations to facilitate faster development cycles and future features.
+* Add escaping to code rendered to bring it in line with recent updates to ACF field documentation. See https://twitter.com/wp_acf/status/1181344882775875584.
+* Add 'Copy All' fields button (previously only Theme Code Pro feature).
+* Add various enhancements to code rendered for the following fields and field settings:
   * Gallery field (return types Array, URL and ID)
   * Image (return types Array, URL and ID)
   * File (return types Array, URL and ID)
@@ -153,7 +152,8 @@ The _[ACF Theme Code PRO](https://hookturn.io/downloads/acf-theme-code-pro/)_ pl
   * Taxonomy (appearances Checkbox, Multi Select, Radio Buttons and Select, return types Term Object and Term ID)
   * User (values Single and Multiple, return types User Array, User Object and User ID)
   * Google Map
-* Fix: Show location related upgrade notice even if only Options location selected (when ACF PRO is also activated)
+* Add Location UI and move location related upgrade notice to code block
+* Fix issue with location related upgrade notice where it wouldn't show if only Options location was selected.
 
 = 1.4.1 =
 * Compatibility with WordPress 5.2.2
