@@ -11,7 +11,7 @@ For the Pro version, visit the [_ACF Theme Code Pro_ page on Hookturn.io](https:
 ## Description
 The _ACF Theme Code_ plugin automatically generates the code needed to implement _[Advanced Custom Fields](https://en-au.wordpress.org/plugins/advanced-custom-fields/)_ in your themes.
 
-[youtube https://www.youtube.com/watch?v=g9APGNJMy7k]
+[![ACF Theme Code for Advanced Custom Fields](https://img.youtube.com/vi/g9APGNJMy7k/0.jpg)](https://www.youtube.com/watch?v=g9APGNJMy7k)
 
 > Video note: This free version of _ACF Theme Code_ now supports ACF 5.
 
