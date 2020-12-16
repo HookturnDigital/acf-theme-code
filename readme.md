@@ -4,7 +4,7 @@ Automatically generates the code needed to implement Advanced Custom Fields in y
 to rapidly speed up development by producing copy-and-paste PHP snippets for entire ACF Field Groups leaving the 
 developer to implement custom markup as needed for the given project. 
 
-** Note: this project is now maintained as part of the _ACF Theme Code Pro_ repository.** To download the latest free 
+**Note: this project is now maintained as part of the _ACF Theme Code Pro_ repository.** To download the latest free 
 version of this plugin, visit the [ACF Theme Code Pro WordPress.org repository](https://wordpress.org/plugins/acf-theme-code/).
 For the Pro version, visit the [ACF Theme Code Pro page on Hookturn.io](https://hookturn.io/downloads/acf-theme-code-pro/). 
 
