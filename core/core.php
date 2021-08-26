@@ -14,7 +14,8 @@ final class ACFTC_Core {
 		'message',
 		'accordion',
 		'enhanced_message',
-		'row'
+		'row',
+		'page', // Advanced Forms Pro (used for multi-step forms)
 	);
 
 	// Basic field types supported by TC Free and TC Pro
