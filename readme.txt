@@ -130,6 +130,10 @@ The _[ACF Theme Code PRO](https://hookturn.io/downloads/acf-theme-code-pro/)_ pl
 
 == Changelog ==
 
+= 2.5.2 =
+* Compatibility with WordPress 5.8.0
+* Fix CSS and JS enqueue bugs
+
 = 2.5.0 =
 * Improve support for WordPress 5.4.
 * Improve support for all field types included in ACF PRO 5.8.9 (including all their various settings).
