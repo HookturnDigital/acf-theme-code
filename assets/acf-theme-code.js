@@ -1,6 +1,12 @@
-// jQuery doc ready
+// i18n functions
+const { __ } = wp.i18n; // Support for these functions can also be added: _x, _n, sprintf eg. `const { __, sprintf } = wp.i18n;`
+
 (function($) {
 	$(document).ready(function() {
+
+		// i18n strings
+		let i18nStrCopyAll = __('Copy all to clipboard', 'acf-theme-code');
+		let i18nStrCode = __('Code', 'acf-theme-code');
 
 		// prevent # linking to top of page
 		$( "a.acftc-field__copy" ).click(function( event ) {
@@ -8,7 +14,7 @@
 		});
 
 		// add the copy all button
-		$( "#acftc-meta-box .inside").prepend('<a href="#" class="acftc-copy-all acf-js-tooltip" title="Copy all to clipboard"></a>');
+		$( "#acftc-meta-box .inside").prepend('<a href="#" class="acftc-copy-all acf-js-tooltip" title="' + i18nStrCopyAll + '"></a>');
 		$( "#acftc-meta-box .toggle-indicator").hide();
 
 		// ACF 4 - add anchor link to each field object
@@ -19,7 +25,7 @@
 			// find the parent class - this is to prevent mulitple links added to a repeater
 			var parent_class = $(this).parent().parent().prop('className');
 			if ( ( data_type != 'tab' ) && ( data_type != 'message') && ( parent_class == 'inside' ) ) {
-				  $(this).find('.row_options').first().append( '<span>| <a class="acftc-scroll__link" href="#acftc-' + field_key + '">Code</a></span>' );
+				  $(this).find('.row_options').first().append( '<span>| <a class="acftc-scroll__link" href="#acftc-' + field_key + '">' + i18nStrCode + '</a></span>' );
 			}
 
 		});
@@ -40,7 +46,7 @@
 			// no code is generated for tab and message fields
 			if ( ( data_type != 'tab' ) && ( data_type != 'message') ) {
 
-				$(this).find( '.row-options' ).eq( 0 ).append( '<a class="acftc-scroll__link" href="#acftc-' + field_key + '">Code</a>' );
+				$(this).find( '.row-options' ).eq( 0 ).append( '<a class="acftc-scroll__link" href="#acftc-' + field_key + '">' + i18nStrCode + '</a>' );
 
 			}
 
@@ -69,7 +75,7 @@
 			// find the offset from the top of our target field
 			var target_offset = target.offset().top;
 
-			// after the large bp, the header is fixed
+			// after the large break point, the header is fixed
 			if (window.matchMedia("(max-width: 782px)").matches) {
 				var customoffset = 80; // increase offset for small screens
 			} else {
@@ -93,9 +99,6 @@
 		// On toggle of the location
 		$( "#acftc-group-option" ).change(function( event ) {
 			
-			console.log("select changed");
-			
-
 			// get the selected value
 			var activediv = $(this).val();
 			

@@ -35,6 +35,11 @@ if ( !empty( $group_field_group->fields ) ) {
 // Group field has no sub fields
 else {
 
-	echo $this->indent . htmlspecialchars("<?php // warning: group field '" . $this->name . "' has no sub fields ?>")."\n";
+	$i18n_str_no_sub_fields_warning = sprintf(
+		/* translators: %s: repeater field name */
+		__( 'Warning: Group field %s has no sub fields', 'acf-theme-code' ),
+		"'$this->name'" 
+	);
+	echo $this->indent . htmlspecialchars("<?php // {$i18n_str_no_sub_fields_warning} ?>\n");
 
 }

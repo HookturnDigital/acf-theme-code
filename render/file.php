@@ -20,8 +20,11 @@ if ( $return_format == 'array' ) {
 
 // If file is returned as a URL
 if ( $return_format == 'url' ) {
+
+	$i18n_str_download_file = __( 'Download File', 'acf-theme-code' );
+
 	echo $this->indent . htmlspecialchars("<?php if ( ".$this->get_field_method . "( '". $this->name ."'". $this->location_rendered_param . " ) ) : ?>")."\n";
-	echo $this->indent . htmlspecialchars("	<a href=\"<?php " . $this->the_field_method . "( '". $this->name ."'". $this->location_rendered_param . " ); ?>\">Download File</a>")."\n";
+	echo $this->indent . htmlspecialchars("	<a href=\"<?php " . $this->the_field_method . "( '". $this->name ."'". $this->location_rendered_param . " ); ?>\">" . $i18n_str_download_file . "</a>")."\n";
 	echo $this->indent . htmlspecialchars("<?php endif; ?>"."\n");
 }
 

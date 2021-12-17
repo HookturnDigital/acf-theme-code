@@ -140,6 +140,7 @@ final class ACFTC_Core {
 
 		if ( ACFTC_IS_PRO ) {
 
+			add_action( 'admin_init', array($this, 'load_textdomain') );
 			add_action( 'acf/include_admin_tools' , array($this, 'add_location_registration_tool') );
 
 		} 
@@ -204,7 +205,7 @@ final class ACFTC_Core {
 
 		add_meta_box(
 			'acftc-meta-box',
-			__( 'Theme Code', 'acftc-textdomain' ), // Previously `textdomain`
+			__( 'Theme Code', 'acf-theme-code' ), // Previously `textdomain`
 			array( $this, 'display_callback'),
 			array( 'acf', 'acf-field-group' )
 		);
@@ -246,32 +247,49 @@ final class ACFTC_Core {
 
 		global $post_type;
 
-		$page = $GLOBALS['plugin_page'];
+		$current_screen = get_current_screen();
 
-		if ( 'acf-field-group' == $post_type || 'acf' == $post_type || 'acf-tools' == $page ) {
+		if ( 'acf-field-group' == $post_type || 'acf' == $post_type || 'custom-fields_page_acf-tools' == $current_screen->id ) {
+
 
 			// Plugin styles
-			wp_enqueue_style( 'acftc_css', ACFTC_PLUGIN_DIR_URL . 'assets/acf-theme-code.css', array() , ACFTC_PLUGIN_VERSION );
+			wp_enqueue_style( 'acftc-css', ACFTC_PLUGIN_DIR_URL . 'assets/acf-theme-code.css', array() , ACFTC_PLUGIN_VERSION );
 
 			// Prism (code formatting)
-			wp_enqueue_style( 'acftc_prism_css', ACFTC_PLUGIN_DIR_URL . 'assets/prism.css', array() , ACFTC_PLUGIN_VERSION );
-			wp_enqueue_script( 'acftc_prism_js', ACFTC_PLUGIN_DIR_URL . 'assets/prism.js', array() , ACFTC_PLUGIN_VERSION );
+			wp_enqueue_style( 'acftc-prism-css', ACFTC_PLUGIN_DIR_URL . 'assets/prism.css', array() , ACFTC_PLUGIN_VERSION );
+			wp_enqueue_script( 'acftc-prism-js', ACFTC_PLUGIN_DIR_URL . 'assets/prism.js', array() , ACFTC_PLUGIN_VERSION );
 
 			// Clipboard
-			wp_enqueue_script( 'acftc_clipboard_js', ACFTC_PLUGIN_DIR_URL . 'assets/clipboard.min.js', array() , '1.7.1' );
+			wp_enqueue_script( 'acftc-clipboard-js', ACFTC_PLUGIN_DIR_URL . 'assets/clipboard.min.js', array() , '1.7.1' );
 
-			// Plugin js
-			wp_enqueue_script( 'acftc_js', ACFTC_PLUGIN_DIR_URL . 'assets/acf-theme-code.js', array( 'jquery', 'acftc_clipboard_js' ), ACFTC_PLUGIN_VERSION, true );
+			// Plugin JS
+			wp_enqueue_script( 'acftc-js', ACFTC_PLUGIN_DIR_URL . 'assets/acf-theme-code.js', array( 'wp-i18n', 'jquery', 'acftc-clipboard-js' ), ACFTC_PLUGIN_VERSION, true );
+
+			// i18n
+			// The third argument for `wp_set_script_translations()` is an optional path to the directory containing translation files.
+			// This is only needed if your plugin or theme is not hosted on WordPress.org, which provides these translation files automatically.
+			$translation_dir_file_path = ( ACFTC_IS_PRO ) ? ( ACFTC_PLUGIN_DIR_PATH . 'pro/languages' ) : null;
+			wp_set_script_translations( 'acftc-js', 'acf-theme-code', $translation_dir_file_path );
 
 			if ( ACFTC_IS_PRO ) {
-				wp_enqueue_script( 'acftc_pro_js', ACFTC_PLUGIN_DIR_URL . 'pro/assets/acf-theme-code-pro.js', array( 'jquery', 'acftc_js' ), ACFTC_PLUGIN_VERSION, true );
+				wp_enqueue_script( 'acftc-pro-js', ACFTC_PLUGIN_DIR_URL . 'pro/assets/acf-theme-code-pro.js', array( 'jquery', 'acftc-js' ), ACFTC_PLUGIN_VERSION, true );
 			}
 
 		}
 
-		if ( ACFTC_IS_PRO && 'theme-code-pro-license' == $page ) {
+		if ( ACFTC_IS_PRO && 'settings_page_theme-code-pro-license' == $current_screen->id ) {
 			wp_enqueue_style( 'acftcp_license_page_css', ACFTC_PLUGIN_DIR_URL . 'pro/assets/acftcp-license-page.css', '' , ACFTC_PLUGIN_VERSION);
 		}
+
+	}
+
+
+	/**
+	 * Load translated strings for ACFTC Pro (ACFTC uses wordpress.org for translations).
+	 */
+	public function load_textdomain() {
+		
+		load_plugin_textdomain( 'acf-theme-code', false, dirname( ACFTC_PLUGIN_BASENAME ) . '/pro/languages' ); 
 
 	}
 

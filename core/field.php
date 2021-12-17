@@ -327,20 +327,47 @@ class ACFTC_Field {
 
 		ob_start();
 
+		$error_message_1 = $error_message_2 = '';
+
 		if ( file_exists( $this->render_partial ) ) {
 
+			// Render partial
 			include( $this->render_partial );
 
 		} elseif ( in_array( $this->type, ACFTC_Core::$field_types_all_tc_pro ) ) {
 
-			echo $this->indent . htmlspecialchars( "<?php // Upgrade to ACF Theme Code Pro for " . $this->type . " field support. ?>" ) . "\n";
-			echo $this->indent . htmlspecialchars( "<?php // Visit http://www.hookturn.io for more information. ?>" ) . "\n";
+			// Upgrade to ACF Theme Code Pro message
+			$error_message_1 = sprintf(
+				/* translators: %s: Field type */
+				__( 'Upgrade to ACF Theme Code Pro for `%s` field support.', 'acf-theme-code' ),
+				$this->type
+			);
+			$error_message_2 = sprintf(
+				/* translators: %s: Hookturn URL */
+				__( 'Visit %s for more information.', 'acf-theme-code' ),
+				ACFTC_HOOKTURN_URL
+			);
 			
 		} else {
 			
-			echo $this->indent . htmlspecialchars( "<?php // The " . $this->type  . " field type is not supported in this version of the plugin. ?>" ) . "\n";
-			echo $this->indent . htmlspecialchars( "<?php // Contact http://www.hookturn.io to request support for this field type. ?>" ) . "\n";
+			// Field not supported message
+			$error_message_1 = sprintf(
+				/* translators: %s: Field type */
+				__( 'The `%s` field type is not supported in this version of the plugin.', 'acf-theme-code' ),
+				$this->type
+			);
+			$error_message_2 = sprintf(
+				/* translators: %s: Hookturn URL */
+				__( 'Contact %s to request support for this field type.', 'acf-theme-code' ),
+				ACFTC_HOOKTURN_URL
+			);
 
+		}
+
+		// Echo error messages if present
+		if ( $error_message_1 && $error_message_2 ) {
+			echo $this->indent . htmlspecialchars( "<?php // {$error_message_1} ?>\n" );
+			echo $this->indent . htmlspecialchars( "<?php // {$error_message_2} ?>\n" );
 		}
 
 		return ob_get_clean();
@@ -367,7 +394,7 @@ class ACFTC_Field {
 		<?php echo $this->get_field_html_title();?>
 	</div>
 	<div class="acftc-field-code" id="acftc-<?php echo $this->quick_link_id; ?>">
-		<a href="#" class="acftc-field__copy acf-js-tooltip" title="Copy to clipboard"></a>
+		<a href="#" class="acftc-field__copy acf-js-tooltip" title="<?php _e( 'Copy to clipboard', 'acf-theme-code' ) ?>"></a>
 		<pre class="line-numbers"><code class="language-php"><?php echo $this->get_field_html_body(); ?></code></pre>
 	</div>
 	
