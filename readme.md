@@ -98,6 +98,16 @@ This free version of _ACF Theme Code_ generates code for the following ACF field
 Thanks to all of our beta testers. Including Elliot Condon, Phil Smart, Richard Johnston and James Bundey.
 
 
+### Translations
+Would you like to use the ACF Theme Code plugin in your native language? Then why not _[contribute a translation](https://translate.wordpress.org/projects/wp-plugins/acf-theme-code/)_ via translate.wordpress.org.
+
+If you are new to translating plugins, there is a helpful _[First Steps](https://make.wordpress.org/polyglots/handbook/translating/first-steps/)_ guide available.
+
+_[View the current state translations for ACF Theme Code](https://translate.wordpress.org/projects/wp-plugins/acf-theme-code/)_. 
+
+Any and all assistance with translations is greatly appreciated. Please let us know if you need any help with submitting translations.
+
+
 ## Installation
 
 From your WordPress dashboard
@@ -129,11 +139,15 @@ The _[ACF Theme Code PRO](https://hookturn.io/downloads/acf-theme-code-pro/)_ pl
 
 ## Changelog
 
+= 2.5.3 =
+* Add full support for localization (i18n)
+  * Please let us know if you're interested in helping translate ACF Theme Code into your language.
+
 = 2.5.2 =
 * Compatibility with WordPress 5.8.0
 * Fix CSS and JS enqueue bugs
 
-**2.5.0**
+= 2.5.0 =
 * Improve support for WordPress 5.4.
 * Improve support for all field types included in ACF PRO 5.8.9 (including all their various settings).
 * Improve codebase by syncing both free and pro foundations to facilitate faster development cycles and future features.
@@ -158,37 +172,37 @@ The _[ACF Theme Code PRO](https://hookturn.io/downloads/acf-theme-code-pro/)_ pl
 * Add Location UI and move location related upgrade notice to code block
 * Fix issue with location related upgrade notice where it wouldn't show if only Options location was selected.
 
-**1.4.1**
+= 1.4.1 =
 * Compatibility with WordPress 5.2.2
 
-**1.4.0**
+= 1.4.0 =
 * All ACF v5 Free Fields Supported including: Group, Button, Range and Link fields.
 * Fix: Bug with locations section on PHP 7.2
 
-**1.3.2**
+= 1.3.2 =
 * Fix: Updated clipboard.js & bug fix for the copy to clipboard feature
 
-**1.3.1**
+= 1.3.1 =
 * Fix: Updates to array count functionality for PHP 5.4
 
-**1.3.0**
+= 1.3.0 =
 * Core : Support for ACF Pro when bundled in a Theme
 * Fix : HTML output by the File field is now valid
 * Core : Notice for location rule support (now in ACF Theme Code Pro)
 
-**1.2.0**
+= 1.2.0 =
 * Core: Quicklinks feature with anchor links to the relevant theme code block
 * Core: Notice updates & various bug fixes
 
-**1.1.2**
+= 1.1.2 =
 * Fix: Use the_sub_field method for nested File fields with return format URL
 
-**1.1.1**
+= 1.1.1 =
 * Field: Post Object field now works correctly for ACF 4
 * Core: Various internal code improvements
 
-**1.1.0**
+= 1.1.0 =
 * Fields: All field formatting improved inline with ACF Theme Code Pro
 
-**1.0.0**
+= 1.0.0 =
 * Core: First version

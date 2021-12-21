@@ -3,7 +3,7 @@ Contributors: benpearson, philkurth
 Tags: acf,advanced custom fields,php,automation
 Requires at least: 4.9.0
 Tested up to: 5.8.0
-Stable tag: 2.5.2
+Stable tag: 2.5.3
 Requires PHP: 5.6
 License: GPL2+
 
@@ -98,6 +98,14 @@ This free version of _ACF Theme Code_ generates code for the following ACF field
 = Thank you =
 Thanks to all of our beta testers. Including Elliot Condon, Phil Smart, Richard Johnston and James Bundey.
 
+= Translations =
+Would you like to use the ACF Theme Code plugin in your native language? Then why not _[contribute a translation](https://translate.wordpress.org/projects/wp-plugins/acf-theme-code/)_ via translate.wordpress.org.
+
+If you are new to translating plugins, there is a helpful _[First Steps](https://make.wordpress.org/polyglots/handbook/translating/first-steps/)_ guide available.
+
+_[View the current state translations for ACF Theme Code](https://translate.wordpress.org/projects/wp-plugins/acf-theme-code/)_. 
+
+Any and all assistance with translations is greatly appreciated. Please let us know if you need any help with submitting translations.
 
 == Installation ==
 
@@ -129,6 +137,10 @@ The _[ACF Theme Code PRO](https://hookturn.io/downloads/acf-theme-code-pro/)_ pl
 1. The code required to implement each field is displayed for you in the Theme Code section.
 
 == Changelog ==
+
+= 2.5.3 =
+* Add full support for localization (i18n)
+  * Please let us know if you're interested in helping translate ACF Theme Code into your language.
 
 = 2.5.2 =
 * Compatibility with WordPress 5.8.0
