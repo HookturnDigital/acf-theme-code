@@ -19,7 +19,7 @@ if ( "postmeta" == ACFTC_Core::$db_table ) { // ACF v4
 if ( $return_format == 'array' || $return_format == 'object' ) {
 	echo $this->indent . htmlspecialchars("<?php \$".$this->var_name." = " . $this->get_field_method . "( '" . $this->name ."'". $this->location_rendered_param . " ); ?>")."\n";
 	echo $this->indent . htmlspecialchars("<?php if ( \$".$this->var_name." ) : ?>")."\n";
-	echo $this->indent . htmlspecialchars("	<img src=\"<?php echo esc_url( \$".$this->var_name."['url'] ); ?>\" width=\"<?php echo esc_url( \$".$this->var_name."['width'] ); ?>\" height=\"<?php echo esc_url( \$".$this->var_name."['height'] ); ?>\" alt=\"<?php echo esc_attr( \$".$this->var_name."['alt'] ); ?>\" />")."\n";
+	echo $this->indent . htmlspecialchars("	<img src=\"<?php echo esc_url( \$".$this->var_name."['url'] ); ?>\" width=\"<?php echo esc_attr( \$".$this->var_name."['width'] ); ?>\" height=\"<?php echo esc_attr( \$".$this->var_name."['height'] ); ?>\" alt=\"<?php echo esc_attr( \$".$this->var_name."['alt'] ); ?>\" />")."\n";
 	echo $this->indent . htmlspecialchars("<?php endif; ?>\n");
 }
 
