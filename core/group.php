@@ -91,7 +91,7 @@ class ACFTC_Group {
 
 		if ( 'postmeta' == ACFTC_Core::$db_table ) { // ACF
 			return $this->get_fields_from_postmeta_table();
-		 } elseif ( 'posts' == ACFTC_Core::$db_table ) { // ACF PRO
+		} elseif ( 'posts' == ACFTC_Core::$db_table ) { // ACF PRO
 			return $this->get_fields_from_posts_table();
 		}
 

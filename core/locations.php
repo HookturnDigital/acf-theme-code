@@ -192,7 +192,7 @@ class ACFTC_Locations {
 			'field_group_id' => $this->field_group_post_ID
 			// no location argument included here, only used below
 		);
-		$parent_field_group= new ACFTC_Group( $args );
+		$parent_field_group = new ACFTC_Group( $args );
 
 		// If no fields in field group: display notice
 		// (needs to be done at this level because ACFTC Group class is used recursively)
