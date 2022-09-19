@@ -148,53 +148,40 @@ final class ACFTC_Core {
 	}
 
 	/**
-	 * Set the DB Table (as this changes between version 4 and 5)
-	 * So we need to check if we're using version 4 or version 5 of ACF
-	 * This includes ACF 5 in a theme or ACF 4 or 5 installed via a plugin
+	 * Set the DB Table used by ACF. 
+	 * This changed from `postmeta` to `posts in version 5 of ACF and ACF Pro.
 	 */
-	public function set_db_table() {
+	public function set_db_table()
+	{
 
-		// If we can't detect ACF
-		if ( ! class_exists( 'acf' )  ) {
-
-			// bail early
+		// Check for ACF
+		if (!class_exists('acf')) {
 			return;
+		}
 
-		 }
+		// Check for the function `acf_get_setting`. This was added in version 5 of ACF.
+		if (function_exists('acf_get_setting')) {
 
-		// Check for the function acf_get_setting - this came in version 5
-		if ( function_exists( 'acf_get_setting' ) ) {
-
-			// Get the version to be sure
-			// This will return a srting of the version eg '5.0.0'
-			$version = acf_get_setting( 'version' );
+			$version = acf_get_setting('version'); // This will return a string of the version eg '5.0.0'
 
 		} else {
 
-			// Use the version 4 logic to get the version
-			// This will return a string if the plugin is active eg '4.4.11'
-			// This will retrn the string 'version' if the plugin is not active
-			$version = apply_filters( 'acf/get_info', 'version' );
+			// Use the version 4 logic to get the version.
+			// This will return a string if the plugin is active eg '4.4.11'.
+			// Else it will return the string 'version' if the plugin is not active.
+			$version = apply_filters('acf/get_info', 'version');
 
 		}
 
 		// Get only the major version from the version string (the first character)
-		$major_version = substr( $version, 0 , 1 );
+		$major_version = intval(substr($version, 0, 1));
 
-		// If the major version is 5
-		if( $major_version == '5' ) {
-
-			// Set the db table to posts
+		if ($major_version >= 5) {
 			self::$db_table = 'posts';
-
-		// If the major version is 4
-		} elseif( $major_version == '4' ) {
-
-			// Set the db table to postmeta
+		} elseif ($major_version == 4) {
 			self::$db_table = 'postmeta';
-
 		}
-
+		
 	}
 
 
@@ -246,12 +233,15 @@ final class ACFTC_Core {
 	public function enqueue($hook)
 	{
 
-		global $post_type;
+		global $post_type, $plugin_page;
 
 		$current_screen = get_current_screen();
 
-		if ( 'acf-field-group' == $post_type || 'acf' == $post_type || 'custom-fields_page_acf-tools' == $current_screen->id ) {
-
+		if (
+			'acf-field-group' == $post_type
+			|| 'acf' == $post_type
+			|| 'acf-tools' == $plugin_page // ACF Tools page
+		) {
 
 			// Plugin styles
 			wp_enqueue_style('acftc-css', ACFTC_PLUGIN_DIR_URL . 'assets/acf-theme-code.css', array(), ACFTC_PLUGIN_VERSION);
