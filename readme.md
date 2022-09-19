@@ -139,6 +139,9 @@ The _[ACF Theme Code PRO](https://hookturn.io/downloads/acf-theme-code-pro/)_ pl
 
 ## Changelog
 
+= 2.5.4 =
+* Add support for ACF 6
+
 = 2.5.3 =
 * Add full support for localization (i18n)
   * Please let us know if you're interested in helping translate ACF Theme Code into your language.
