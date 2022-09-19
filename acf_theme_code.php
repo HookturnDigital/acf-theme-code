@@ -5,7 +5,7 @@ Plugin URI: https://hookturn.io/downloads/acf-theme-code-pro/
 Description: Generates theme code for ACF field groups to speed up development.
 Version: 2.5.3
 Author: Ben Pearson and Phil Kurth
-Author URI: http://www.hookturn.io
+Author URI: https://hookturn.io
 Text Domain: acf-theme-code
 */
 
@@ -22,7 +22,7 @@ if ( is_admin() ) {
 		defined( 'ACFTC_PLUGIN_BASENAME' ) or define( 'ACFTC_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 		defined( 'ACFTC_IS_PRO' ) or define( 'ACFTC_IS_PRO', file_exists( ACFTC_PLUGIN_DIR_PATH . 'pro' ) );
 		defined( 'ACFTC_PLUGIN_FILE' ) or define( 'ACFTC_PLUGIN_FILE', __FILE__ );
-		defined( 'ACFTC_HOOKTURN_URL' ) or define( 'ACFTC_HOOKTURN_URL', 'http://www.hookturn.io' ); // See also HOOKTURN_STORE_URL
+		defined( 'ACFTC_HOOKTURN_URL' ) or define( 'ACFTC_HOOKTURN_URL', 'https://hookturn.io' ); // See also HOOKTURN_STORE_URL
 
 		// Classes
 		include('core/core.php');
