@@ -5,6 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 final class ACFTC_Core {
 
 	public static $class_prefix = 'ACFTC_';
+	public static $acf_version = null;
 	public static $db_table = '';
 	public static $indent_repeater = 2;
 	public static $indent_flexible_content = 3;
@@ -134,6 +135,7 @@ final class ACFTC_Core {
 	 **/
 	private function add_core_actions() {
 
+		add_action( 'admin_init', array($this, 'set_acf_version') );
 		add_action( 'admin_init', array($this, 'set_db_table') );
 		add_action( 'add_meta_boxes', array($this, 'register_meta_boxes') );
 		add_action( 'admin_enqueue_scripts', array($this, 'enqueue') );
@@ -147,42 +149,41 @@ final class ACFTC_Core {
 		
 	}
 
-	/**
-	 * Set the DB Table used by ACF. 
-	 * This changed from `postmeta` to `posts in version 5 of ACF and ACF Pro.
-	 */
-	public function set_db_table()
-	{
 
-		// Check for ACF
-		if (!class_exists('acf')) {
-			return;
-		}
+	/**
+	 * Set ACF version
+	 * 
+	 * The ACF_VERSION constant wasn't introduced until ACF 5.5.13 so it's not utilised here.
+	 */
+	public function set_acf_version() {
 
 		// Check for the function `acf_get_setting`. This was added in version 5 of ACF.
 		if (function_exists('acf_get_setting')) {
 
-			$version = acf_get_setting('version'); // This will return a string of the version eg '5.0.0'
+			self::$acf_version = acf_get_setting('version'); // This will return a string of the version eg '5.0.0'
 
 		} else {
 
 			// Use the version 4 logic to get the version.
 			// This will return a string if the plugin is active eg '4.4.11'.
 			// Else it will return the string 'version' if the plugin is not active.
-			$version = apply_filters('acf/get_info', 'version');
+			self::$acf_version = apply_filters('acf/get_info', 'version');
 
 		}
 
-		// Get only the major version from the version string (the first character)
-		$major_version = intval(substr($version, 0, 1));
-
-		if ($major_version >= 5) {
-			self::$db_table = 'posts';
-		} elseif ($major_version == 4) {
-			self::$db_table = 'postmeta';
-		}
-		
 	}
+
+
+	/**
+	 * Set the DB Table used by ACF. 
+	 * 
+	 * This changed from `postmeta` to `posts in version 5 of ACF and ACF Pro.
+	 */
+	public function set_db_table()
+	{
+		self::$db_table = version_compare(self::$acf_version, '5', '<') ? 'postmeta' : 'posts';
+	}
+
 
 
 	/**
