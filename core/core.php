@@ -230,6 +230,17 @@ final class ACFTC_Core {
 	}
 
 
+	/**
+	 * Get stylesheet filename
+	 * 
+	 * If ACF version is less than 6 use legacy stylesheet
+	 */
+	private function get_stylesheet_filename()
+	{
+		return (self::$acf_version < 6) ? 'acf-theme-code-legacy' : 'acf-theme-code';
+	}
+
+
 	// load scripts and styles
 	public function enqueue($hook)
 	{
