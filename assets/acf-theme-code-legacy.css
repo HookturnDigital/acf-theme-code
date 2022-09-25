@@ -1,0 +1,343 @@
+/**
+ * ACF Theme Code: Legacy
+ * 
+ * These styles are for ACF version 5 and earlier
+ */
+
+/* clear default padding off .inside  */
+#acftc-meta-box .inside {
+	margin:0;
+	padding:0;
+}
+
+
+/* warpper for the intro / meta bar */
+.acftc-field-meta {
+	position: relative;
+	width: 100%;
+	height: 22px;
+	padding-top: 15px;
+}
+
+.acftc-field-code {
+	position: relative;
+
+}
+
+/* acftc-field-meta__title - place title */
+[data-pseudo-content]::before {
+	content: attr(data-pseudo-content);
+	display: block;
+	color:#999;
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+	user-select: none;
+	position: absolute;
+	top:15px;
+	left:20px;
+}
+
+.acftc-field-code .acftc-field__copy {
+	position: absolute;
+	top:-22px;
+	right:14px;
+	width: 12px;
+	height: 20px;
+	background: url(icon-clipboard.svg) center center no-repeat;
+	background-size: 12px auto;
+	display: block;
+	opacity: 0.3;
+	transition: all 300ms ease-in;
+	z-index: 1000;
+}
+
+.acftc-copy-all:hover,
+.acftc-field-code .acftc-field__copy:hover  {
+	opacity: 1;
+}
+
+
+@-webkit-keyframes zoomitbig {
+	15%,40%,75%,100% {
+		-webkit-transform-origin: center center
+	}
+
+	15% {
+		-webkit-transform: scale(1.4, 1.2)
+	}
+
+	40% {
+		-webkit-transform: scale(0.9, 0.9)
+	}
+
+	75% {
+		-webkit-transform: scale(1.08, 1)
+	}
+
+	100% {
+		-webkit-transform: scale(1, 1)
+	}
+}
+
+@-moz-keyframes zoomitbig {
+	15%,40%,75%,100% {
+		-moz-transform-origin: center center
+	}
+
+	15% {
+		-moz-transform: scale(1.4, 1.2)
+	}
+
+	40% {
+		-moz-transform: scale(0.9, 0.9)
+	}
+
+	75% {
+		-moz-transform: scale(1.08, 1)
+	}
+
+	100% {
+		-moz-transform: scale(1, 1)
+	}
+}
+
+.acftc-copy-all:focus,
+.acftc-field-code .acftc-field__copy:focus {
+	outline: 0;
+	border:none;
+	box-shadow: none !important;
+	-webkit-animation: zoomitbig 300ms ease-out;
+   -moz-animation: zoomitbig 300ms ease-out
+}
+
+a.acftc-contact-link {
+	display: block;
+	padding:10px;
+}
+
+.acftc-pro-notice {
+	display: block;
+	margin-top:20px;
+	background: #f1f1f1;
+}
+
+.acftc-pro-notice--top {
+	margin-top:0px;
+}
+
+a.acftc-pro-notice__link {
+	padding:10px 20px;
+	text-decoration: none;
+	font-weight: normal;
+	display: block;
+	text-align: left;
+	box-sizing: border-box;
+	color:#999;
+	transition: all 300ms ease-in;
+}
+
+a.acftc-pro-notice__link:hover {
+	background: #0073aa;
+	color:#FFF;
+}
+
+.acftc-intro-notice {
+	padding:10px 20px;
+}
+
+.li-field-label {
+	width: 31% !important;
+}
+.li-field-type {
+	width: 22% !important;
+}
+
+/* styles for the location section */
+.acftc-location-settings {
+	border-bottom:1px solid #e5e5e5;
+	padding: 15px 12px;
+}
+
+.acftc-location-settings .acf-field {
+	margin: 0;
+}
+
+.acftc-location-settings .acf-field .acf-label label {
+	/* line-height: 28px; */
+	margin-bottom: 3px;
+}
+
+.acftc-location-settings  .acf-label .description {
+    font-size: 12px;
+	color: #777777;
+}
+
+
+/* hide all the locations to start */
+.location-wrap {
+	display: none;
+}
+
+/* show the first one */
+#acftc-group-0.location-wrap {
+	display: block;
+}
+
+
+/* location intro area styles for v4 only - body.post-type-acf is only in acf 4 */
+body.post-type-acf .acftc-location-settings {
+	overflow: auto;
+	width: 100%;
+	display: block;
+}
+body.post-type-acf .acftc-location-settings .acf-label {
+	width: 24%;
+	margin: 0;
+	padding: 15px 12px;
+	float: left;
+	position: relative;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background: #F9F9F9;
+	border-right:1px solid #E1E1E1;
+	font-weight: bold;
+}
+
+body.post-type-acf .acftc-location-settings .acf-input {
+	width: 76%;
+	margin: 0;
+	padding: 15px 12px;
+	float: left;
+	position: relative;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body.post-type-acf .acftc-location-settings .acf-field select  {
+	width: 100%;
+	padding: 3px 5px;
+	resize: none;
+	margin: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+/* copy all */
+.acftc-copy-all {
+	position: absolute;
+	top:-28px;
+	right:10px;
+	width: 20px;
+	height: 20px;
+	background: url(icon-clipboard.svg) center center no-repeat;
+	background-size: 12px auto;
+	display: block;
+	opacity: 0.3;
+	transition: all 300ms ease-in;
+	z-index: 1000;
+}
+
+.acftc-copy-all:hover  {
+	opacity: 1;
+}
+
+#acf-admin-tool-acftc_registration .inside {
+	margin:0 !important;
+	padding:0 !important;
+}
+
+#acf-admin-tool-acftc_registration .inside p {
+	padding:5px 10px;
+	margin:10px 0;
+}
+
+#acf-admin-tool-acftc_registration .acf-meta-box-wrap .acf-fields {
+	border: 0px !important;
+}
+
+.acftc-registration-tool-title {
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+/* hide all the registration divs to start */
+.acftc-registration-wrap {
+	display: none;
+}
+/* how the block registration to start */
+#acftc-register-block {
+	display: block;
+}
+
+.acf-registrations {
+	border-bottom:1px solid #e5e5e5;
+}
+
+.acftc-block-code-hidden,
+.acftc-option-code-hidden {
+	display: none;
+}
+
+#acf-admin-tool-acftc_registration {
+	/* width: calc(100% + 16px);
+	margin-right: 0; */
+}
+
+#acf-admin-tool-acftc_registration .hndle {
+	cursor: default !important;
+}
+
+#acf-admin-tool-acftc_registration input[type=text] {
+	box-shadow: none;
+}
+.acftc-field--top {
+		border-top:1px solid #ebebeb;
+}
+
+.acftc-field {
+	background: #fafafa;
+	display: flex;
+	border-bottom: 1px solid #ebebeb;
+}
+
+.acftc-label {
+	height: 50px;
+	line-height: 46px;
+	float: left;
+	width: 20%;
+	margin: 0;
+	padding: 0 15px;
+	font-weight: bold;
+	border-right: 1px solid #ebebeb;
+}
+.acftc-label label:hover {
+	cursor: default !important;
+}
+
+.acftc-input {
+	display: inline;
+	width: 80%;
+	float: right;
+	padding:8px 15px;
+}
+.acftc-input input,
+.acftc-input select {
+	width: 100%;
+	line-height: 30px;
+	padding:0 10px;
+}
+
+/* styles for the block and repeater admin area */
+#acf-admin-tool-acftc-location-registration .inside {
+	padding: 0 !important;
+}
+#acf-admin-tool-acftc-location-registration .inside p {
+	padding:0 12px;
+}
+
