@@ -1,13 +1,47 @@
-/* Custom styles for the ACF Template Code plugin */
+/**
+ * ACF Theme Code
+ * 
+ * These styles are for ACF version 6 and greater
+ */
 
-/* clear default padding off .inside  */
-#acftc-meta-box .inside {
-	margin:0;
-	padding:0;
+
+
+/**
+ * General in both:
+ * - ACF Edit Field Group page
+ * - ACF Tools page
+ */
+
+/* Metabox titles */
+#acftc-meta-box .postbox-header h2,
+#acf-admin-tool-acftc-location-registration .acf-postbox-header h2 {
+	display: inline-flex;
+	justify-content: flex-start;
+	align-content: stretch;
+	align-items: center;
 }
 
+#acftc-meta-box .postbox-header h2:before,
+#acf-admin-tool-acftc-location-registration .acf-postbox-header h2:before {
+	content: '';
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 8px;
+	background-color: #98A2B3;
+	border: none;
+	border-radius: 0;
+	-webkit-mask-size: contain;
+	mask-size: contain;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	mask-position: center;
+	-webkit-mask-image: url(icon-code.svg);
+	mask-image: url(icon-code.svg);
+}
 
-/* warpper for the intro / meta bar */
+/* Wrapper for the meta bar above field code and the registration tool */
 .acftc-field-meta {
 	position: relative;
 	width: 100%;
@@ -15,47 +49,95 @@
 	padding-top: 15px;
 }
 
-.acftc-field-code {
-	position: relative;
-
+/* Meta bar */
+.acftc-field-meta__title {
+	font-size: 12.5px;
 }
 
-/* acftc-field-meta__title - place title */
-[data-pseudo-content]::before {
+.acftc-field-meta__title[data-pseudo-content]::before {
 	content: attr(data-pseudo-content);
 	display: block;
-	color:#999;
-	-webkit-user-select: none;  /* Chrome all / Safari all */
-	-moz-user-select: none;     /* Firefox all */
-	-ms-user-select: none;      /* IE 10+ */
+	color: #667085;
+	-webkit-user-select: none;
+	/* Chrome all / Safari all */
+	-moz-user-select: none;
+	/* Firefox all */
+	-ms-user-select: none;
+	/* IE 10+ */
 	user-select: none;
 	position: absolute;
-	top:15px;
-	left:20px;
+	top: 15px;
+	left: 25px;
 }
 
-.acftc-field-code .acftc-field__copy {
+/* Code block */
+.acftc-field-code {
+	position: relative;
+}
+
+pre.line-numbers {
+	padding-left: 60px !important;
+}
+
+pre[class*="language-"] {
+	background: #F9FAFB;
+	border: solid 1px #EAECF0;
+	border-left: none;
+	border-right: none;
+}
+
+
+
+/**
+ * Copy buttons in both:
+ * - ACF Edit Field Group page
+ * - ACF Tools page
+ */
+
+/* All copy buttons */
+.acftc-field__copy,
+.acftc-copy-all {
 	position: absolute;
-	top:-22px;
-	right:14px;
-	width: 12px;
-	height: 20px;
-	background: url(icon--clipboard.svg) center center no-repeat;
 	background-size: 12px auto;
+	background-position: center center;
+	background-repeat: no-repeat;
 	display: block;
 	opacity: 0.3;
 	transition: all 300ms ease-in;
 	z-index: 1000;
 }
 
+/* Copy button for individual fields and registration tool */
+.acftc-field__copy {
+	top: -25px;
+	right: 24px;
+	width: 12px;
+	height: 20px;
+	background-image: url(icon-clipboard.svg);
+}
+
+/* Copy all button (ACF Edit field group page) */
+.acftc-copy-all {
+	top: -42px;
+    right: 20px;
+	width: 20px;
+	height: 20px;
+	background-image: url(icon-clipboard.svg);
+}
+
+/* All copy buttons: Hover state */
 .acftc-copy-all:hover,
-.acftc-field-code .acftc-field__copy:hover  {
+.acftc-field__copy:hover {
 	opacity: 1;
 }
 
-
+/* All copy buttons: Click animations */
 @-webkit-keyframes zoomitbig {
-	15%,40%,75%,100% {
+
+	15%,
+	40%,
+	75%,
+	100% {
 		-webkit-transform-origin: center center
 	}
 
@@ -77,7 +159,11 @@
 }
 
 @-moz-keyframes zoomitbig {
-	15%,40%,75%,100% {
+
+	15%,
+	40%,
+	75%,
+	100% {
 		-moz-transform-origin: center center
 	}
 
@@ -99,230 +185,170 @@
 }
 
 .acftc-copy-all:focus,
-.acftc-field-code .acftc-field__copy:focus {
+.acftc-field__copy:focus {
 	outline: 0;
-	border:none;
+	border: none;
 	box-shadow: none !important;
 	-webkit-animation: zoomitbig 300ms ease-out;
-   -moz-animation: zoomitbig 300ms ease-out
+	-moz-animation: zoomitbig 300ms ease-out
 }
 
-a.acftc-contact-link {
-	display: block;
-	padding:10px;
+
+
+/**
+ * ACF Edit Field Group page only
+ */
+
+/* Reset WP core container */
+#acftc-meta-box .inside {
+	margin: 0;
+	padding: 0;
 }
+
+/* Last code block in a location: Add border radius to match metabox */
+.location-wrap div:last-child pre {
+	border-radius: 0 0 8px 8px;
+}
+
+
+
+/**
+ * Notices
+ * TODO Locate these and test all are still needed etc
+ */
 
 .acftc-pro-notice {
 	display: block;
-	margin-top:20px;
+	margin-top: 20px;
 	background: #f1f1f1;
 }
 
 .acftc-pro-notice--top {
-	margin-top:0px;
+	margin-top: 0px;
 }
 
 a.acftc-pro-notice__link {
-	padding:10px 20px;
+	padding: 10px 20px;
 	text-decoration: none;
 	font-weight: normal;
 	display: block;
 	text-align: left;
 	box-sizing: border-box;
-	color:#999;
+	color: #999;
 	transition: all 300ms ease-in;
 }
 
 a.acftc-pro-notice__link:hover {
 	background: #0073aa;
-	color:#FFF;
+	color: #FFF;
 }
 
 .acftc-intro-notice {
-	padding:10px 20px;
-}
-
-.li-field-label {
-	width: 31% !important;
-}
-.li-field-type {
-	width: 22% !important;
-}
-
-/* styles for the location section */
-.acf-locations {
-	border-bottom:1px solid #e5e5e5;
-}
-
-.acf-locations .acf-field .acf-label label {
-	/* line-height: 28px; */
-	margin-bottom: 3px;
-}
-
-.acf-locations  .acf-label .description {
-    font-size: 12px;
-	color: #777777;
+	padding: 10px 20px;
 }
 
 
-/* hide all the locations to start */
+
+/**
+ * Location select section (ACF Edit Field Group page)
+ */
+
+/* Location settings (location select) */
+.acftc-location-settings {
+	padding: 24px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.acftc-location-settings__inside {
+	max-width: 600px;
+}
+
+/* .acf-field is used to style settings, but need to reset margins */
+.acftc-location-settings .acf-field {
+	margin: 0;
+}
+
+/* Wrapper for each blcok of location code. Initally hide all the location code blocks */
 .location-wrap {
 	display: none;
 }
 
-/* show the first one */
+/* Show first location code block */
 #acftc-group-0.location-wrap {
 	display: block;
 }
 
 
-/* location intro area styles for v4 only - body.post-type-acf is only in acf 4 */
-body.post-type-acf .acf-locations {
-	overflow: auto;
-	width: 100%;
-	display: block;
-}
-body.post-type-acf .acf-locations .acf-label {
-	width: 24%;
-	margin: 0;
-	padding: 15px 12px;
-	float: left;
-	position: relative;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	background: #F9F9F9;
-	border-right:1px solid #E1E1E1;
-	font-weight: bold;
-}
 
-body.post-type-acf .acf-locations .acf-input {
-	width: 76%;
-	margin: 0;
-	padding: 15px 12px;
-	float: left;
-	position: relative;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
+/**
+ * Registration Tool (on ACF Tools page)
+ */
 
-body.post-type-acf .acf-locations .acf-field select  {
-	width: 100%;
-	padding: 3px 5px;
-	resize: none;
-	margin: 0;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+/* Register title inside metabox */
+.acftc-registration-tool-title {
+	color: #3c434a;
 	font-size: 14px;
-	line-height: 1.4;
+	margin-top: 0;
+	margin-bottom: 20px;
 }
 
-/* copy all */
-.acftc-copy-all {
-	position: absolute;
-	top:-28px;
-	right:10px;
-	width: 20px;
-	height: 20px;
-	background: url(icon--clipboard.svg) center center no-repeat;
-	background-size: 12px auto;
-	display: block;
-	opacity: 0.3;
-	transition: all 300ms ease-in;
-	z-index: 1000;
-}
-
-.acftc-copy-all:hover  {
-	opacity: 1;
-}
-
-#acf-admin-tool-acftc_registration .inside {
-	margin:0 !important;
-	padding:0 !important;
-}
-
-#acf-admin-tool-acftc_registration .inside p {
-	padding:5px 10px;
-	margin:10px 0;
-}
-
-#acf-admin-tool-acftc_registration .acf-meta-box-wrap .acf-fields {
-	border: 0px !important;
-}
-
-/* hide all the registration divs to start */
-.registration-wrap {
+/* Wrapper around Block and Options UIs: Hide on page load  */
+.acftc-registration-wrap {
 	display: none;
 }
-/* how the block registration to start */
+
+/* Show the Block registration UI on page load */
 #acftc-register-block {
 	display: block;
 }
 
-.acf-registrations {
-	border-bottom:1px solid #e5e5e5;
-}
-
-.acf-block-code-hidden,
-.acf-option-code-hidden {
+/* Block and Options code sources are hidden */
+.acftc-block-code-hidden,
+.acftc-option-code-hidden {
 	display: none;
 }
 
-#acf-admin-tool-acftc_registration {
-	/* width: calc(100% + 16px);
-	margin-right: 0; */
-}
-
-#acf-admin-tool-acftc_registration .hndle {
-	cursor: default !important;
-}
-
-#acf-admin-tool-acftc_registration input[type=text] {
-	box-shadow: none;
-}
-.acftc-field--top {
-		border-top:1px solid #ebebeb;
-}
-
-.acftc-field {
-	background: #fafafa;
-	display: flex;
-	border-bottom: 1px solid #ebebeb;
-}
-
+/* Labels for select and inputs */
 .acftc-label {
-	height: 50px;
-	line-height: 46px;
-	float: left;
-	width: 20%;
-	margin: 0;
-	padding: 0 15px;
 	font-weight: bold;
-	border-right: 1px solid #ebebeb;
+	margin-bottom: 6px;
 }
+
 .acftc-label label:hover {
 	cursor: default !important;
 }
 
-.acftc-input {
-	display: inline;
-	width: 80%;
-	float: right;
-	padding:8px 15px;
-}
-.acftc-input input,
-.acftc-input select {
+/* Select and inputs */
+.acftc-input select,
+.acftc-input input {
 	width: 100%;
-	line-height: 30px;
-	padding:0 10px;
 }
 
-/* styles for the block and repeater admin area */
-#acf-admin-tool-acftc_location_registration .inside {
-	padding: 0 !important;
+/* Select field for location (block or options) */
+.acftc-field--top {
+	margin-bottom: 20px;
 }
-#acf-admin-tool-acftc_location_registration .inside p {
-	padding:0 12px;
+
+/* Input field for block or page name */
+.acftc-field--name {
+	margin-bottom: 25px;
+}
+
+/* Meta above code block */
+.acftc-field-meta--registration {
+	margin-left: -25px;
+	margin-right: -25px;
+	width: calc(100% + 50px);
+	border-top: 1px solid #EAECF0;
+}
+
+/* Copy button */
+.acftc-field__copy--registration {
+	right: -1px;
+}
+
+.acftc-registration-wrap pre.line-numbers {
+    margin: 0 -24px -26px -24px !important;
+    box-shadow: 0px 1px 2px rgb(16 24 40 / 10%);
+    border-radius: 0 0 8px 8px;
 }
