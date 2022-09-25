@@ -243,32 +243,36 @@ final class ACFTC_Core {
 			|| 'acf-tools' == $plugin_page // ACF Tools page
 		) {
 
+
 			// Plugin styles
-			wp_enqueue_style('acftc-css', ACFTC_PLUGIN_DIR_URL . 'assets/acf-theme-code.css', array(), ACFTC_PLUGIN_VERSION);
+			$plugin_stylesheet_filename = $this->get_stylesheet_filename();
+
+			wp_enqueue_style('acftc', ACFTC_PLUGIN_DIR_URL . "assets/{$plugin_stylesheet_filename}.css", array(), ACFTC_PLUGIN_VERSION);
 
 			// Prism (code formatting)
-			wp_enqueue_style('acftc-prism-css', ACFTC_PLUGIN_DIR_URL . 'assets/prism.css', array(), ACFTC_PLUGIN_VERSION);
-			wp_enqueue_script('acftc-prism-js', ACFTC_PLUGIN_DIR_URL . 'assets/prism.js', array(), ACFTC_PLUGIN_VERSION);
+			wp_enqueue_style('acftc-prism', ACFTC_PLUGIN_DIR_URL . 'assets/prism.css', array(), ACFTC_PLUGIN_VERSION);
+			
+			wp_enqueue_script('acftc-prism', ACFTC_PLUGIN_DIR_URL . 'assets/prism.js', array(), ACFTC_PLUGIN_VERSION);
 
 			// Clipboard
-			wp_enqueue_script('acftc-clipboard-js', ACFTC_PLUGIN_DIR_URL . 'assets/clipboard.min.js', array(), '1.7.1');
+			wp_enqueue_script('acftc-clipboard', ACFTC_PLUGIN_DIR_URL . 'assets/clipboard.min.js', array(), '1.7.1');
 
 			// Plugin JS
-			wp_enqueue_script('acftc-js', ACFTC_PLUGIN_DIR_URL . 'assets/acf-theme-code.js', array('wp-i18n', 'jquery', 'acftc-clipboard-js'), ACFTC_PLUGIN_VERSION, true);
-
+			wp_enqueue_script('acftc', ACFTC_PLUGIN_DIR_URL . 'assets/acf-theme-code.js', array('wp-i18n', 'jquery', 'acftc-clipboard'), ACFTC_PLUGIN_VERSION, true);
+			
 			// i18n
 			// The third argument for `wp_set_script_translations()` is an optional path to the directory containing translation files.
 			// This is only needed if your plugin or theme is not hosted on WordPress.org, which provides these translation files automatically.
 			$translation_dir_file_path = (ACFTC_IS_PRO) ? (ACFTC_PLUGIN_DIR_PATH . 'pro/languages') : null;
-			wp_set_script_translations('acftc-js', 'acf-theme-code', $translation_dir_file_path);
+			wp_set_script_translations('acftc', 'acf-theme-code', $translation_dir_file_path);
 
 			if (ACFTC_IS_PRO) {
-				wp_enqueue_script('acftc-pro-js', ACFTC_PLUGIN_DIR_URL . 'pro/assets/acf-theme-code-pro.js', array('jquery', 'acftc-js'), ACFTC_PLUGIN_VERSION, true);
+				wp_enqueue_script('acftc-pro', ACFTC_PLUGIN_DIR_URL . 'pro/assets/acf-theme-code-pro.js', array('jquery', 'acftc'), ACFTC_PLUGIN_VERSION, true);
 			}
 		}
 
 		if (ACFTC_IS_PRO && 'settings_page_theme-code-pro-license' == $current_screen->id) {
-			wp_enqueue_style('acftcp_license_page_css', ACFTC_PLUGIN_DIR_URL . 'pro/assets/acftcp-license-page.css', '', ACFTC_PLUGIN_VERSION);
+			wp_enqueue_style('acftcp-license-page', ACFTC_PLUGIN_DIR_URL . 'pro/assets/acftcp-license-page.css', '', ACFTC_PLUGIN_VERSION);
 		}
 
 	}
