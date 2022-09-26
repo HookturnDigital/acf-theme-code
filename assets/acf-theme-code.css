@@ -205,8 +205,8 @@ pre[class*="language-"] {
 	padding: 0;
 }
 
-/* Last code block in a location: Add border radius to match metabox */
-.location-wrap div:last-child pre {
+/* Theme Code Pro only: Last code block in a location: Add border radius to match metabox. (Theme Code Free has upgrade notice below locations) */
+.acftc-pro-meta-box .location-wrap div:last-child pre {
 	border-radius: 0 0 8px 8px;
 }
 
