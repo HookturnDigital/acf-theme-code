@@ -140,6 +140,8 @@ final class ACFTC_Core {
 		add_action( 'add_meta_boxes', array($this, 'register_meta_boxes') );
 		add_action( 'admin_enqueue_scripts', array($this, 'enqueue') );
 
+		add_filter( 'postbox_classes_acf-field-group_acftc-meta-box' , array($this, 'add_metabox_classes') );
+
 		if ( ACFTC_IS_PRO ) {
 
 			add_action( 'admin_init', array($this, 'load_textdomain') );
@@ -197,6 +199,20 @@ final class ACFTC_Core {
 			array( $this, 'display_callback'),
 			array( 'acf', 'acf-field-group' )
 		);
+
+	}
+
+
+	/**
+	 * Add metabox classes
+	 */
+	public function add_metabox_classes( $classes ) {
+		
+		if ( ACFTC_IS_PRO ) {
+			$classes[] = 'acftc-pro-meta-box';
+		}
+		
+		return $classes;
 
 	}
 
