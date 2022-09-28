@@ -26,6 +26,7 @@ if ( is_admin() ) {
 
 		// Classes
 		include('core/core.php');
+		include('core/field-group-ui.php'); // Theme code UI for field groups
 		include('core/locations.php');
 		include('core/group.php');
 		include('core/field.php');

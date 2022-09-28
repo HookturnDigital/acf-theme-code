@@ -224,13 +224,21 @@ final class ACFTC_Core {
 	 */
 	public function display_callback( $field_group_post_obj ) {
 
-		$locations_class_name = self::$class_prefix . 'Locations';
-		$locations_ui = new $locations_class_name( $field_group_post_obj );
-
-        echo $locations_ui->get_locations_html();
-
+		echo $this->get_meta_box_content_html($field_group_post_obj);
+	
 	}
 
+
+	/**
+	 * Get meta box content 
+	 */
+	public function get_meta_box_content_html($field_group_post_obj) {
+
+		$field_group_ui_html = ACFTC_Field_Group_UI::get_field_group_ui_html($field_group_post_obj);
+
+		return $field_group_ui_html; 
+
+	}
 
 	/**
 	 * Add meta box for Location Registration Tool to ACF "Tools" page

@@ -182,52 +182,29 @@ class ACFTC_Locations {
 
 
 	/**
-	 * Get locations HTML
+	 * Get the code for a set of locations
 	 * 
-	 * @return string
+	 * @param ACFTC_Group $parent_field_group 
 	 */
-	public function get_locations_html() {
+	public function get_locations_code_html($parent_field_group)
+	{
 
-		$args = array(
-			'field_group_id' => $this->field_group_post_ID
-			// no location argument included here, only used below
-		);
-		$parent_field_group = new ACFTC_Group( $args );
-
-		// If no fields in field group: display notice
-		// (needs to be done at this level because ACFTC Group class is used recursively)
-		if ( empty( $parent_field_group->fields ) ) { 
-			
-			ob_start();?>
-
-			<div class="acftc-intro-notice">
-				<p><?php _e( 'Create some fields and publish the field group to generate theme code.', 'acf-theme-code' ); ?></p>
-			</div>
-			
-			<?php return ob_get_clean();
-		}
-
-		// If all locations are excluded: render fields without location ui
-		// elements (eg. only the Current User location is selected)
-		if ( empty( $this->location_rules ) ) {
-			return $parent_field_group->get_field_group_html();
+		if (!$parent_field_group) {
+			return '';
 		}
 
 		ob_start();
 
-		// If more than one location: render location select
-		if ( count( $this->location_rules) > 1 ) {
-			echo $this->get_location_select_html();
+		// If all locations are excluded (eg. only the Current User location is selected), render fields without location ui elements 
+		if (empty($this->location_rules)) {
+			echo $parent_field_group->get_field_group_html();
+		} 
+		// Else if one or more locations, render all fields for every location
+		else {
+			foreach ($this->location_rules as $index => $location_rule) :
+				echo $this->get_single_location_html($location_rule, $index);
+			endforeach;
 		}
-
-		// Render ALL fields for every location
-		foreach ( $this->location_rules as $index => $location_rule ) :
-
-			echo $this->get_single_location_html( $location_rule, $index );
-
-		endforeach;
-
-        echo $this->get_after_field_group_notice_html();
 
 		return ob_get_clean();
 
@@ -273,32 +250,65 @@ class ACFTC_Locations {
 
 
 	/**
-	 * Render header for location select
+	 * Get location select (if more than one location)
 	 * 
 	 * @return string 
 	 */
-	private function get_location_select_html() { 
+	public function get_location_select_html() { 
 		
+		if (count($this->location_rules) <= 1) {
+			return '';
+		}
+
 		ob_start();
 		?>
-<div class="inside acf-fields -left acf-locations">
-	<div class="acf-field acf-field-select" data-name="style" data-type="select">
-		<div class="acf-label">
-			<label for="acf_field_group-style"><?php _e( 'Location', 'acf-theme-code' ); ?></label>
-			<p class="description"><?php _e( 'Select a location to see the relevant theme code', 'acf-theme-code' ); ?></p>
-		</div>
-		<div class="acf-input">
-			<select id="acftc-group-option" class="" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="<?php _e( 'Select', 'acf-theme-code' ); ?>" data-allow_null="0">
-<?php foreach ( $this->location_rules as $key => $location_rule ) : ?>
-				<option value="acftc-group-<?php echo $key; ?>"><?php echo $this->get_location_clean_text( $location_rule ); ?></option>
-<?php endforeach; ?>
-			</select>
+<div class="acftc-location-settings">
+	<div class="acftc-location-settings__inside">
+		<div class="acf-field acf-field-select" data-name="style" data-type="select">
+			<div class="acf-label">
+				<label for="acf_field_group-style"><?php _e( 'Location', 'acf-theme-code' ); ?></label>
+				<?php echo $this->get_location_select_instructions_html(); ?>
+			</div>
+			<div class="acf-input">
+				<select id="acftc-group-option" class="" data-ui="0" data-ajax="0" data-multiple="0" data-placeholder="<?php _e( 'Select', 'acf-theme-code' ); ?>" data-allow_null="0">
+	<?php foreach ( $this->location_rules as $key => $location_rule ) : ?>
+					<option value="acftc-group-<?php echo $key; ?>"><?php echo $this->get_location_clean_text( $location_rule ); ?></option>
+	<?php endforeach; ?>
+				</select>
+			</div>
 		</div>
 	</div>
 </div>
 
 <?php 
 		return ob_get_clean(); 
+
+	}
+
+
+	/**
+	 * Get location select instructions
+	 * 
+	 * @return string 
+	 */
+	public function get_location_select_instructions_html() { 
+
+		ob_start();
+
+		if (version_compare(ACFTC_Core::$acf_version, '6', '<')) : ?>
+
+			<p class="description"><?php _e( 'Select a location to see the relevant theme code', 'acf-theme-code' ); ?></p>
+
+		<?php else : ?>
+
+			<div class="acf-tip">
+				<i tabindex="0" class="acf-icon acf-icon-help acf-js-tooltip" title="<?php _e( 'Select a location to see the relevant theme code', 'acf-theme-code' ); ?>">?</i>
+			</div>
+
+		<?php endif;
+
+		return ob_get_clean(); 
+
 	}
 
 
@@ -394,24 +404,6 @@ class ACFTC_Locations {
 	</div>
 <?php
 
-		return ob_get_clean(); 
-	}
-
-
-	/**
-	 * Get HTML for any notices to be added below field group
-	 * 
-	 * @return string 
-	 */
-	protected function get_after_field_group_notice_html() { 
-		
-		ob_start();
-        ?>
-<div class="acftc-pro-notice">
-    <a class="acftc-pro-notice__link" href="https://hookturn.io/downloads/acf-theme-code-pro/?utm_source=acftcfree" target="_blank"><?php _e( 'Upgrade to', 'acf-theme-code' ) ?> <strong><?php _e( 'ACF Theme Code Pro', 'acf-theme-code' ) ?></strong>.</a>
-</div>
-
-<?php 
 		return ob_get_clean(); 
 	}
 
