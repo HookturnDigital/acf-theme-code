@@ -3,7 +3,7 @@ Contributors: benpearson, philkurth
 Tags: acf,advanced custom fields,php,automation
 Requires at least: 4.9.0
 Tested up to: 6.0
-Stable tag: 2.5.4
+Stable tag: 2.5.5
 Requires PHP: 5.6
 License: GPL2+
 
