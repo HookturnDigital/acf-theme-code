@@ -139,6 +139,10 @@ The _[ACF Theme Code PRO](https://hookturn.io/downloads/acf-theme-code-pro/)_ pl
 
 ## Changelog
 
+= 2.5.5 =
+* Add new stylesheet to integrate all components with ACF 6
+* Update scroll to code functionality to support ACF 6
+
 = 2.5.4 =
 * Add support for ACF 6
 
