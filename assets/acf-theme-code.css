@@ -37,8 +37,8 @@
 	mask-repeat: no-repeat;
 	-webkit-mask-position: center;
 	mask-position: center;
-	-webkit-mask-image: url(icon-code.svg);
-	mask-image: url(icon-code.svg);
+	-webkit-mask-image: url(icon-code-simple.svg);
+	mask-image: url(icon-code-simple.svg);
 }
 
 /* Wrapper for the meta bar above field code and the registration tool */
