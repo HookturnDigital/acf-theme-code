@@ -14,7 +14,7 @@ The _ACF Theme Code_ plugin automatically generates the code needed to implement
 
 [youtube https://www.youtube.com/watch?v=g9APGNJMy7k]
 
-> Video note: This free version of _ACF Theme Code_ now supports ACF 5.
+> Video note: This free version of _ACF Theme Code_ now supports ACF 6.
 
 = Features =
 
