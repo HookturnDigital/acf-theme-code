@@ -2,8 +2,8 @@
 Contributors: benpearson, philkurth
 Tags: acf,advanced custom fields,php,automation
 Requires at least: 4.9.0
-Tested up to: 6.0
 Stable tag: 2.5.5
+Tested up to: 6.4
 Requires PHP: 5.6
 License: GPL2+
 
@@ -137,6 +137,9 @@ The _[ACF Theme Code PRO](https://hookturn.io/downloads/acf-theme-code-pro/)_ pl
 1. The code required to implement each field is displayed for you in the Theme Code section.
 
 == Changelog ==
+
+= 2.5.6 =
+* Compatibility with WordPress 6.4
 
 = 2.5.5 =
 * Add new stylesheet to integrate all components with ACF 6

@@ -139,6 +139,9 @@ The _[ACF Theme Code PRO](https://hookturn.io/downloads/acf-theme-code-pro/)_ pl
 
 ## Changelog
 
+= 2.5.6 =
+* Compatibility with WordPress 6.4
+
 = 2.5.5 =
 * Add new stylesheet to integrate all components with ACF 6
 * Update scroll to code functionality to support ACF 6
